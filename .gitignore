@@ -1,0 +1,38 @@
+# Build outputs
+/build/
+/build-*/
+*.log
+/.idea/
+/.vs/
+/.vscode/
+/.claude/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Recompiler output: derived from the game's own code, so it is regenerated
+# locally from your disc (tools/generate.sh) and never committed.
+games/*/generated/
+
+# Local PlayStation assets (never commit dumps / BIOS)
+games/*/disc/
+games/*/saves/
+games/*/bios/
+*.bin
+*.cue
+*.iso
+*.img
+*.chd
+*.mcd
+*.mcr
+SCPH*.BIN
+
+# Player state written next to the game when run from the source tree
+settings.toml
+/saves/
+
+# BIOS work area the generate CLI stages under the game (build output)
+games/*/psxrecomp/
+
+# Release packages (tools/package_release.sh)
+/dist/
