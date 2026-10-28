@@ -6,8 +6,21 @@ name = "Final Fantasy VII"
 id = "SCUS-94163"
 players = 2
 exe = "disc/SCUS_941.63"
-# No default disc: the player chooses their own image in the launcher, and
-# tools/generate.sh is given its path.
+# One program on three images: Disc 1 boots, Discs 2 and 3 are data. This list
+# is the runtime's disc roster (the launcher's disc dropdown and the in-game
+# Ctrl+L / F10 disc menu), and a disc change mounts the listed file itself, so
+# the player puts their own images here, next to the executable, under these
+# names. tools/generate.sh is given the Disc 1 path directly.
+discs = [
+    "discs/Disc 1.chd",
+    "discs/Disc 2.chd",
+    "discs/Disc 3.chd",
+]
+disc_serials = [
+    "SCUS-94163",
+    "SCUS-94164",
+    "SCUS-94165",
+]
 load_address = "0x80010000"
 entry_pc = "0x800110C0"
 text_size = "0x00060800"

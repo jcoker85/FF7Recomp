@@ -30,6 +30,7 @@ SCPH*.BIN
 # Player state written next to the game when run from the source tree
 settings.toml
 /saves/
+/discs/
 
 # BIOS work area the generate CLI stages under the game (build output)
 games/*/psxrecomp/

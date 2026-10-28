@@ -32,7 +32,15 @@ for need in assets/fonts assets/img bios/openbios.bin bios/OpenBIOS.LICENSE game
 done
 
 rm -rf "$STAGE" "dist/$NAME.zip"
-mkdir -p "$STAGE/licenses" "$STAGE/bios" "$STAGE/mods"
+mkdir -p "$STAGE/licenses" "$STAGE/bios" "$STAGE/mods" "$STAGE/discs"
+cat > "$STAGE/discs/PUT YOUR DISCS HERE.txt" <<EOF
+Put your three Final Fantasy VII discs in this folder, named Disc 1, Disc 2
+and Disc 3. Each can be a .chd, an .iso, or a .cue with its .bin, for example:
+
+  Disc 1.chd
+  Disc 2.chd
+  Disc 3.chd
+EOF
 cp "$src/$EXE" "$src/game.toml" "$STAGE/"
 for opt in game_options.toml psx_game_version.txt; do
   [[ -f "$src/$opt" ]] && cp "$src/$opt" "$STAGE/"
@@ -54,17 +62,21 @@ FF7Recomp $VERSION
 Final Fantasy VII as a native Windows program. Unofficial fan project;
 non-commercial use only.
 
-You need your own disc images of the game (.chd, or .cue with its .bin).
-Nothing from the game is included here.
+You need your own disc images of the game. Each disc can be a .chd, an .iso,
+or a .cue with its .bin. Nothing from the game is included here.
 
 Supported discs (USA): Final Fantasy VII SCUS-94163, SCUS-94164 and
 SCUS-94165. Other versions are accepted by the launcher but are not expected
 to run correctly.
 
-1. Run $EXE. The first time, its launcher opens: choose your Disc 1 image
-   there, then start the game.
-2. The launcher opens again at any time for display, audio, controls and
-   memory cards.
+1. Put your three discs in the discs folder, named Disc 1, Disc 2 and Disc 3
+   (for example discs\Disc 1.chd, discs\Disc 2.iso). The game changes discs
+   from this folder when it asks for the next one.
+2. Run $EXE and click Play.
+3. The launcher opens again at any time for display, audio, controls and
+   memory cards. To change discs by hand during play, press Ctrl+L or F10
+   (or hold Select + L3), choose Disc, pick the disc and Insert disc and
+   resume.
 
 The game runs on the bundled open-source OpenBIOS (bios/OpenBIOS.LICENSE).
 The game program contains a machine-translated build of the game's own code.

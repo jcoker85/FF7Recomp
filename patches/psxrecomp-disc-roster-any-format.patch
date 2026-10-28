@@ -1,0 +1,24 @@
+diff --git a/runtime/src/main.cpp b/runtime/src/main.cpp
+index b46655f8..7eeff124 100644
+--- a/runtime/src/main.cpp
++++ b/runtime/src/main.cpp
+@@ -17737,6 +17737,19 @@ int main(int argc, char** argv) {
+             PSXRecompV4::mod_runtime_set_netplay_content_negotiation(
+                 g_netplay_content_negotiation != 0);
+             game_discs = gc.discs;
++            /* A roster entry names a disc, not a container: when the listed
++             * file is absent, mount the player's image of the same name in
++             * any format the disc reader opens. The stem is unchanged, so the
++             * serial and fingerprint keys below still match. */
++            for (auto& d : game_discs) {
++                std::error_code ec;
++                if (std::filesystem::exists(d, ec)) continue;
++                for (const char* ext : { ".chd", ".cue", ".iso", ".bin", ".img" }) {
++                    auto alt = d;
++                    alt.replace_extension(ext);
++                    if (std::filesystem::exists(alt, ec)) { d = alt; break; }
++                }
++            }
+             /* Per-disc serial gate, shared by the launch-time disc check and
+              * the launcher's disc verdict. Keyed by the image's uppercased
+              * stem so a .cue and its .bin agree. */

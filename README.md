@@ -13,13 +13,19 @@ Square Enix or Sony Interactive Entertainment.
 
 ## Play
 
-You need your own disc images of the game (`.chd`, or `.cue` with its `.bin`),
-in the version listed in the table above.
+You need your own disc images of the game, in the version listed in the table
+above. Each disc can be a `.chd`, an `.iso`, or a `.cue` with its `.bin`.
 
 1. Download the latest release zip and unzip it anywhere.
-2. Run `FinalFantasyVII_Recompiled.exe`. The first time, its launcher opens:
-   choose your Disc 1 image, then click Play.
-3. The launcher is where display, audio, controls and memory cards are set.
+2. Put your three discs in the `discs` folder next to the program, named
+   `Disc 1`, `Disc 2` and `Disc 3` (for example `discs/Disc 1.chd`,
+   `discs/Disc 2.iso`). The game changes discs from this folder when it asks
+   for the next one.
+3. Run `FinalFantasyVII_Recompiled.exe` and click Play.
+4. The launcher is where display, audio, controls and memory cards are set.
+   To change discs by hand during play, press **Ctrl+L** or **F10** (or hold
+   **Select + L3**), choose **Disc**, pick the disc and **Insert disc and
+   resume**.
 
 ## Build
 
@@ -38,6 +44,11 @@ cmake --build build
 The game is built to `build/ff7/FinalFantasyVII_Recompiled.exe`.
 `tools/package_release.sh` stages a release zip from that build into `dist/`.
 
+Run from the source tree, the game looks for its discs in `discs/` at the
+repository root (gitignored) rather than next to the executable: psxrecomp
+anchors relative paths in `game.toml` on the project root, and only a packaged
+release is its own root.
+
 ## What is and is not in this repository
 
 The repository holds configuration and build files. It does **not** contain
@@ -50,7 +61,15 @@ Release zips contain the built program, which includes a machine-translated
 build of the game's own code, plus OpenBIOS. They contain no disc data, game
 assets or retail BIOS.
 
-Both submodules are pinned to upstream commits and used unpatched.
+## Framework patches
+
+Both submodules stay pinned to upstream commits; `tools/setup_framework.sh`
+applies these to their working trees.
+
+- `psxrecomp-disc-roster-any-format.patch` lets an entry in `game.toml`'s
+  disc list name a disc rather than a file: when `discs/Disc 2.chd` is not
+  there, the runtime uses `Disc 2` in whichever format is (`.chd`, `.cue`,
+  `.iso`, `.bin` or `.img`). Stock psxrecomp mounts the listed file only.
 
 ## License
 
