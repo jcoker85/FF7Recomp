@@ -1,0 +1,28 @@
+format_version = 7
+id = "ff7.enhancement.fast-loading"
+version = "1.0.0"
+name = "Faster Disc Loading"
+author = "FF7Recomp"
+description = "Reads the disc faster so loads (battles, field changes, menus) finish sooner. The game itself runs at normal speed."
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+# Off by default. It switches on psxrecomp's CD Speed feature (hidden in the
+# launcher on its own) at its default 4x drive speed. Measured on Disc 1: the
+# first battle draws 2.9 s after the game asks for it instead of 4.4 s; what is
+# left is the game's own swirl transition. Movies and CD audio keep their
+# original timing, so the opening movie plays exactly as long as at 1x.
+[[feature]]
+id = "fast-loading"
+name = "Faster disc loading"
+description = "Emulates a 4x faster CD drive. Loads finish sooner; movies, music and the game's own transitions keep their original speed. Turn it off if a load ever stalls."
+group = "Quality of Life"
+default_enabled = false
+
+[[requirement]]
+feature = "fast-loading"
+package = "psx.enhancement.cd-speed"
+requires_feature = "cd-speed"
