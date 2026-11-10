@@ -22,3 +22,14 @@ index c0f66f39..9bf642a5 100644
  #include <initializer_list>
  #include <iterator>
  #include <stdexcept>
+diff --git a/recompiler/src/annotations.cpp b/recompiler/src/annotations.cpp
+index 88f35387..5b586d48 100644
+--- a/recompiler/src/annotations.cpp
++++ b/recompiler/src/annotations.cpp
+@@ -1,5 +1,6 @@
+ #include "annotations.hpp"
+ #include <cstdio>
++#include <cstdlib>
+ #include <cstring>
+ #include <cctype>
+ 

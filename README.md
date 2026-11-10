@@ -115,10 +115,10 @@ applies these to their working trees.
   pipeline's prepared files, so overlays the game stores gzip-compressed can be
   decoded from the disc and compiled ahead of time. Its optional `zero_tail`
   covers memory the loader clears right after a decoded module.
-- `psxrecomp-libcxx-missing-includes.patch` adds two includes that newer libc++
+- `psxrecomp-libcxx-missing-includes.patch` adds three includes that newer libc++
   (llvm-mingw 20261020) no longer pulls in for the framework's bundled
   libraries: `<exception>` for toml11's `std::terminate` and `<cstdlib>` for
-  rabbitizer's `malloc`/`free`. Without them the recompiler and runtime do not
+  rabbitizer's `malloc`/`free` and the recompiler's `strtoul`. Without them the recompiler and runtime do not
   compile with current clang.
 
 ## License
