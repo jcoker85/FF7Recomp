@@ -1,0 +1,24 @@
+diff --git a/recompiler/lib/rabbitizer/cplusplus/src/instructions/InstructionBase.cpp b/recompiler/lib/rabbitizer/cplusplus/src/instructions/InstructionBase.cpp
+index 98d732f9..37c437ed 100644
+--- a/recompiler/lib/rabbitizer/cplusplus/src/instructions/InstructionBase.cpp
++++ b/recompiler/lib/rabbitizer/cplusplus/src/instructions/InstructionBase.cpp
+@@ -3,6 +3,7 @@
+ 
+ #include "instructions/InstructionBase.hpp"
+ 
++#include <cstdlib>
+ #include <stdexcept>
+ 
+ #include "instructions/RabbitizerInstruction.h"
+diff --git a/recompiler/lib/toml11/toml/comments.hpp b/recompiler/lib/toml11/toml/comments.hpp
+index c0f66f39..9bf642a5 100644
+--- a/recompiler/lib/toml11/toml/comments.hpp
++++ b/recompiler/lib/toml11/toml/comments.hpp
+@@ -2,6 +2,7 @@
+ // Distributed under the MIT License.
+ #ifndef TOML11_COMMENTS_HPP
+ #define TOML11_COMMENTS_HPP
++#include <exception>
+ #include <initializer_list>
+ #include <iterator>
+ #include <stdexcept>
