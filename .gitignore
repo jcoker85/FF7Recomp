@@ -35,5 +35,8 @@ settings.toml
 # BIOS work area the generate CLI stages under the game (build output)
 games/*/psxrecomp/
 
+# AOT overlay work area (tools/generate.sh)
+games/*/.cache/
+
 # Release packages (tools/package_release.sh)
 /dist/

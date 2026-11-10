@@ -1,0 +1,92 @@
+diff --git a/tools/prepared_files.py b/tools/prepared_files.py
+index 33ef9410..05e64a99 100644
+--- a/tools/prepared_files.py
++++ b/tools/prepared_files.py
+@@ -28,8 +28,18 @@ Exactly one candidate must exist on the disc being read.
+ 
+ Methods are decoders over bytes only; they never see a path, the disc, or the
+ profile's other sections.
++
++    bpe_container   block-wise byte-pair expansion (tools/bpe_container.py)
++    gzip_member     one RFC 1952 gzip member, read to its trailer; the trailer's
++                    CRC-32 and size must match. Whatever follows the member is
++                    not consumed. A loader that frames the stream (for example a
++                    size header before it) is pinned by `words` checks. Optional
++                    `zero_tail` appends that many zero bytes: memory the loader
++                    clears right after the decoded image (a BSS fill), declared
++                    only as far as code reaches into it (a final delay slot).
+ """
+ import hashlib
++import zlib
+ 
+ import bpe_container
+ 
+@@ -46,9 +56,24 @@ def _bpe_container(data, spec):
+     return bpe_container.decode(data, magic=number(spec['magic']), offset=0)
+ 
+ 
++def _gzip_member(data, spec):
++    inflater = zlib.decompressobj(zlib.MAX_WBITS | 16)
++    try:
++        output = inflater.decompress(data)
++    except zlib.error as exc:
++        raise ValueError(f'gzip: {exc}') from exc
++    if not inflater.eof:
++        raise ValueError('gzip member is truncated')
++    zero_tail = number(spec.get('zero_tail', 0))
++    if zero_tail < 0 or zero_tail % 4:
++        raise ValueError('zero_tail must be a non-negative multiple of 4')
++    return output + bytes(zero_tail), len(data) - len(inflater.unused_data)
++
++
+ # method -> (decoder(data_from_source_offset, spec) -> (output, consumed),
+ #            keys the spec must declare beyond the common ones)
+-METHODS = {'bpe_container': (_bpe_container, ('magic',))}
++METHODS = {'bpe_container': (_bpe_container, ('magic',)),
++           'gzip_member': (_gzip_member, ())}
+ COMMON_KEYS = ('name', 'method', 'source', 'consumed', 'source_sha256', 'size', 'sha256')
+ 
+ 
+diff --git a/tools/tests/test_aot_overlay_pipeline.py b/tools/tests/test_aot_overlay_pipeline.py
+index 175c4be5..c30587d8 100644
+--- a/tools/tests/test_aot_overlay_pipeline.py
++++ b/tools/tests/test_aot_overlay_pipeline.py
+@@ -1,6 +1,7 @@
+ """Method contracts use invented bytes; no game assets or historical captures."""
+ import base64
+ import contextlib
++import gzip
+ import hashlib
+ import io
+ import json
+@@ -996,6 +997,30 @@ class PreparedImageTests(unittest.TestCase):
+         with self.assertRaises(prepared_files.PreparedError):
+             prepared_files.prepare(FakeDisc({'PACK.BIN': packed}), dict(prepared_files=[spec, chained]))
+ 
++    def test_gzip_member_decodes_one_framed_member_and_fails_closed(self):
++        member = gzip.compress(self.OVERLAY, mtime=0)
++        # A loader header before the member and unrelated bytes after it.
++        packed = struct.pack('<II', len(self.OVERLAY), 0x40) + member + b'\0\0\0\0'
++        spec = dict(name='PREPARED/OVERLAY', method='gzip_member',
++                    source=dict(file='MODULE.BIN', file_offset=8), consumed=len(member),
++                    source_sha256=sha(member), size=len(self.OVERLAY), sha256=sha(self.OVERLAY))
++        view = prepared_files.prepare(FakeDisc({'MODULE.BIN': packed}), dict(prepared_files=[spec]))
++        self.assertEqual(view.read('PREPARED/OVERLAY'), self.OVERLAY)
++        tail = dict(spec, zero_tail='0x4', size=len(self.OVERLAY) + 4, sha256=sha(self.OVERLAY + bytes(4)))
++        view = prepared_files.prepare(FakeDisc({'MODULE.BIN': packed}), dict(prepared_files=[tail]))
++        self.assertEqual(view.read('PREPARED/OVERLAY'), self.OVERLAY + bytes(4))
++        with self.assertRaisesRegex(prepared_files.PreparedError, 'zero_tail'):
++            prepared_files.prepare(FakeDisc({'MODULE.BIN': packed}),
++                                   dict(prepared_files=[dict(tail, zero_tail=2)]))
++        corrupt = bytearray(packed)
++        corrupt[-8] ^= 1                    # inside the member's CRC-32
++        cases = [(FakeDisc({'MODULE.BIN': packed[:-12]}), 'truncated'),
++                 (FakeDisc({'MODULE.BIN': bytes(corrupt)}), 'does not decode'),
++                 (FakeDisc({'MODULE.BIN': b'\0' * 8 + self.OVERLAY}), 'does not decode')]
++        for disc, error in cases:
++            with self.subTest(error=error), self.assertRaisesRegex(prepared_files.PreparedError, error):
++                prepared_files.prepare(disc, dict(prepared_files=[spec]))
++
+     def test_disc_set_accepts_any_listed_disc_and_rejects_others_naming_all(self):
+         with tempfile.TemporaryDirectory() as directory:
+             track = Path(directory) / 'track.bin'

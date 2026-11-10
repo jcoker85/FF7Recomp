@@ -49,6 +49,12 @@ for dll in "$src"/*.dll; do [[ -e "$dll" ]] && cp "$dll" "$STAGE/"; done
 cp -r "$src/assets" "$STAGE/assets"
 cp "$src/bios/openbios.bin" "$src/bios/OpenBIOS.LICENSE" "$STAGE/bios/"
 cp -r "$src/mods/bundled" "$STAGE/mods/bundled"
+# Native code for Disc 3's final-boss effect, when the build has it.
+if [[ -d "$src/cache" ]]; then
+  cp -r "$src/cache" "$STAGE/cache"
+else
+  echo "note: $src/cache is missing; Disc 3's LASBOSS3.BIN will run interpreted (pass Disc 3 to tools/generate.sh)" >&2
+fi
 
 cp LICENSE "$STAGE/licenses/FF7Recomp-LICENSE"
 cp psxrecomp/LICENSE "$STAGE/licenses/psxrecomp-LICENSE"

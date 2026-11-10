@@ -1,0 +1,6977 @@
+{
+ "schema": "psxrecomp AOT methods v1",
+ "game_id": "SCUS-94163",
+ "disc_hashes": {
+  "sha256": "385d416b651f8ab2a9dee78718e6dd7ae5d83af37507395b990c4d7923d9e5bd"
+ },
+ "static_output": "generated/overlays_static.c",
+ "strict_bounds": true,
+ "generic_exclude_files": [
+  {
+   "files": [
+    "MAGIC/ALEX1.LZS",
+    "MAGIC/KNIGHT1.LZS",
+    "MAGIC/KNIGHT10.LZS",
+    "MAGIC/KNIGHT11.LZS",
+    "MAGIC/KNIGHT12.LZS",
+    "MAGIC/KNIGHT13.LZS",
+    "MAGIC/KNIGHT14.LZS",
+    "MAGIC/KNIGHT15.LZS",
+    "MAGIC/KNIGHT2.LZS",
+    "MAGIC/KNIGHT3.LZS",
+    "MAGIC/KNIGHT4.LZS",
+    "MAGIC/KNIGHT5.LZS",
+    "MAGIC/KNIGHT6.LZS",
+    "MAGIC/KNIGHT7.LZS",
+    "MAGIC/KNIGHT8.LZS",
+    "MAGIC/KNIGHT9.LZS",
+    "MAGIC/KUJATA1.LZS",
+    "MAGIC/LASTBOSS.LZS",
+    "MAGIC/ODIN1.LZS",
+    "MAGIC/TIFATIFA.LZS",
+    "MAGIC/TUPON1.LZS",
+    "MAGIC/VAHA0_1.LZS",
+    "MAGIC/VAHA0_2.LZS",
+    "MAGIC/VAHA0_3.LZS",
+    "MAGIC/VAHA0_4.LZS",
+    "MAGIC/VAHA0_5.LZS",
+    "MAGIC/VAHA2_1.LZS",
+    "MAGIC/VAHA2_2.LZS",
+    "MAGIC/VAHAMUT1.LZS"
+   ],
+   "reason": "LZSS-packed effect data (textures, models); the battle effect code unpacks it, nothing runs it"
+  }
+ ],
+ "prepared_files": [
+  {
+   "name": "PREPARED/FIELD/FIELD.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "FIELD/FIELD.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x14db3",
+   "source_sha256": "2c82c83e1f7ec14fab0f4585f257264b206aaea41c8531427d41c8b07e08ce27",
+   "size": "0x40748",
+   "sha256": "2962d813743a1904faf0843f4a32d1cfece8de12233f9afb8b552556c56000dd"
+  },
+  {
+   "name": "PREPARED/WORLD/WORLD.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "WORLD/WORLD.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x10493",
+   "source_sha256": "ba78be9125fb0c7413b2d3c0816be75673ddd1897da1b72456d2e07147c8656a",
+   "size": "0x280c0",
+   "sha256": "f1e1c53c74a16c664ccb7dd37be0e9a9f4cb36e82de61255c8169aeabc98bdd5"
+  },
+  {
+   "name": "PREPARED/MINI/CONDOR.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/CONDOR.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x9aa8",
+   "source_sha256": "c90619a84e16665a0e6156d5701148153df97fb2633fbe9a056266a73f714efa",
+   "size": "0x1e810",
+   "sha256": "26610bdc79a89c237b121bb9449a6f98a12e5c83462ba9cd8065965d691d18e7"
+  },
+  {
+   "name": "PREPARED/MINI/SNOBO.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/SNOBO.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x111b3",
+   "source_sha256": "2f54353339eeb55c9431d9acefb616fd34ac0285f366b0c624a87a3452dedfa2",
+   "size": "0x3d690",
+   "sha256": "50c2fded15c758d325b0e4ee8ac323a2230684c06a95af7143c32bc3cbe094d0"
+  },
+  {
+   "name": "PREPARED/MINI/SNOBO2.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/SNOBO2.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x13e19",
+   "source_sha256": "b5289fc3d1bc780dbe8b4a8ec3a7bacb5998b7459749ae66929a57d0557e864e",
+   "size": "0x418f4",
+   "sha256": "4c0cd1a9920aa62128a691789b5cc34c9072f40b838015a3bb3437da2d5dbdf5"
+  },
+  {
+   "name": "PREPARED/MINI/CHOCOBO.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/CHOCOBO.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x8ea1",
+   "source_sha256": "0236b45e992e5d385167b9c62a6df2467a193d347f205c5bd106ac1c20c27530",
+   "size": "0x1733c",
+   "sha256": "937ea43924fd7308b399011fe1950bae0d2199b9f629f1010979028ca61da0c1"
+  },
+  {
+   "name": "PREPARED/MINI/JET.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/JET.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x36eb",
+   "source_sha256": "7b849ab8089275452fc4d305c708166de3920d7b3de920e8cb4be31004c2ba0d",
+   "zero_tail": "0x4",
+   "size": "0x891c",
+   "sha256": "78b3e14919f82379b246c1793aac1e41ac8f1d7f17665fc06e9f467f895d8a5d"
+  },
+  {
+   "name": "PREPARED/MINI/SUBMAR.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/SUBMAR.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x7a65",
+   "source_sha256": "0f6ed1ea9ffd70922a4376def179c2d616efbdeb0770ce54a248b530b5c000d9",
+   "size": "0x12e38",
+   "sha256": "96a123ac1293b8eab2cfb781a168704493d9641d6d459829e45eb4fc9f367ac1"
+  },
+  {
+   "name": "PREPARED/MINI/HIGHWAY.BIN",
+   "method": "gzip_member",
+   "source": {
+    "file": "MINI/HIGHWAY.BIN",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x8552",
+   "source_sha256": "ddc29cf2fcb283b5b80cf7686f0a4de6e732f42566f55a7596cdd2d8733bb1b1",
+   "size": "0x14f4c",
+   "sha256": "1280ebc8bab79366e8791c57eb3c56c5df432f346e6a666f70d9ee456eb5d7d3"
+  },
+  {
+   "name": "PREPARED/BATTLE/BROM.X",
+   "method": "gzip_member",
+   "source": {
+    "file": "BATTLE/BROM.X",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x46e",
+   "source_sha256": "372b3c1542ee62c18a930783f93801f2b72c26ec2f5c4ec88d8a4f689f23b0fb",
+   "size": "0x6cc",
+   "sha256": "709fe575458e359ad81bb610cec98cb6b6dd7b457500733c4652a12abc3559b0"
+  },
+  {
+   "name": "PREPARED/BATTLE/BATTLE.X",
+   "method": "gzip_member",
+   "source": {
+    "file": "BATTLE/BATTLE.X",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x1fd0a",
+   "source_sha256": "38908aeb0f08c3405cce28bc8494f4e9de3311cb3bb97b5c4b028e32aa277df0",
+   "size": "0x538ac",
+   "sha256": "94a0c251c98197a6b902068082180ce244a8b4ecd93792298816a486880a2e7b"
+  },
+  {
+   "name": "PREPARED/BATTLE/BATINI.X",
+   "method": "gzip_member",
+   "source": {
+    "file": "BATTLE/BATINI.X",
+    "file_offset": "0x8"
+   },
+   "consumed": "0x1638",
+   "source_sha256": "a6aa5d20fa922f8548796e5617b0cba8def0a5144c20d1748577e6a80802b188",
+   "size": "0x27b4",
+   "sha256": "0731ada119bf4e505cd0ff3a82ab35b772db6b2d88b8ee1606d16d4843a0d087"
+  },
+  {
+   "name": "PREPARED/BATTLE/BATRES.X",
+   "method": "gzip_member",
+   "source": {
+    "file": "BATTLE/BATRES.X",
+    "file_offset": "0x8"
+   },
+   "consumed": "0xe16",
+   "source_sha256": "e7be80976b46f768a03676dbcdc9a227e1e91f34d99f1edc7631fa3c83e1e43b",
+   "zero_tail": "0x4",
+   "size": "0x1940",
+   "sha256": "359833980fddb982fd880062fdbf6b4b8102436f212587f2b19e70f0ce138d1a"
+  }
+ ],
+ "checks": [
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d24": "0xd6d8",
+    "0x80048d28": "0x14dbb",
+    "0x800118b4": "0x3c068018",
+    "0x800118b8": "0x3c048005",
+    "0x800118bc": "0x8c848d24",
+    "0x800118c0": "0x3c058005",
+    "0x800118c4": "0x8ca58d28",
+    "0x800118c8": "0xc00cf8d",
+    "0x800118cc": "0x3821",
+    "0x800118d0": "0xc00d2d1",
+    "0x800118d4": "0x0",
+    "0x800118d8": "0x1440fffd",
+    "0x800118dc": "0x3c048018",
+    "0x800118e0": "0x800463e",
+    "0x800118e4": "0x0",
+    "0x800118e8": "0xc00d2d1",
+    "0x800118ec": "0x0",
+    "0x800118f0": "0x1440fffd",
+    "0x800118f4": "0x3c04801c",
+    "0x800118f8": "0xc005728",
+    "0x800118fc": "0x3c05800a",
+    "0x80011900": "0xc033d83",
+    "0x80011904": "0x0",
+    "0x80011908": "0xc0285b3",
+    "0x8001190c": "0x0"
+   },
+   "reason": "FIELD/FIELD.BIN: loader table entry 0 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "FIELD/FIELD.BIN",
+   "values": {
+    "0x0": "0x40748",
+    "0x4": "0x33ddc"
+   },
+   "reason": "FIELD/FIELD.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d2c": "0xb36",
+    "0x80048d30": "0x1049b",
+    "0x8001132c": "0x3c068018",
+    "0x80011330": "0x3c048005",
+    "0x80011334": "0x8c848d2c",
+    "0x80011338": "0x3c058005",
+    "0x8001133c": "0x8ca58d30",
+    "0x80011340": "0xc00cf8d",
+    "0x80011344": "0x3821",
+    "0x80011348": "0xc00d2d1",
+    "0x8001134c": "0x0",
+    "0x80011350": "0x1440fffd",
+    "0x80011354": "0x3c048018",
+    "0x80011358": "0xc005728",
+    "0x8001135c": "0x3c05800a",
+    "0x800113e0": "0x3c048007",
+    "0x800113e4": "0x24841e28",
+    "0x800113e8": "0x3c058007",
+    "0x800113ec": "0x24a530cc",
+    "0x800113f0": "0x3c068009",
+    "0x800113f4": "0x24c65ddc",
+    "0x800113f8": "0xc029183",
+    "0x800113fc": "0x3821",
+    "0x80011400": "0x3c018007"
+   },
+   "reason": "WORLD/WORLD.BIN: loader table entry 1 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "WORLD/WORLD.BIN",
+   "values": {
+    "0x0": "0x280c0",
+    "0x4": "0x4e454"
+   },
+   "reason": "WORLD/WORLD.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d34": "0x631",
+    "0x80048d38": "0x9ab0",
+    "0x80012618": "0x3c068018",
+    "0x8001261c": "0x3c048005",
+    "0x80012620": "0x8c848d34",
+    "0x80012624": "0x3c058005",
+    "0x80012628": "0x8ca58d38",
+    "0x8001262c": "0xc00cf8d",
+    "0x80012630": "0x3821",
+    "0x80012634": "0xc00d2d1",
+    "0x80012638": "0x0",
+    "0x8001263c": "0x1440fffd",
+    "0x80012640": "0x3c048018",
+    "0x80012644": "0xc005728",
+    "0x80012648": "0x3c05800a",
+    "0x8001264c": "0xc02dad6",
+    "0x80012650": "0x0"
+   },
+   "reason": "MINI/CONDOR.BIN: loader table entry 2 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/CONDOR.BIN",
+   "values": {
+    "0x0": "0x1e810",
+    "0x4": "0x6df68"
+   },
+   "reason": "MINI/CONDOR.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d3c": "0x4d3",
+    "0x80048d40": "0x111bb",
+    "0x80012590": "0x3c068018",
+    "0x80012594": "0x3c048005",
+    "0x80012598": "0x8c848d3c",
+    "0x8001259c": "0x3c058005",
+    "0x800125a0": "0x8ca58d40",
+    "0x800125a4": "0xc00cf8d",
+    "0x800125a8": "0x3821",
+    "0x800125ac": "0xc00d2d1",
+    "0x800125b0": "0x0",
+    "0x800125b4": "0x1440fffd",
+    "0x800125b8": "0x3c048018",
+    "0x800125bc": "0xc005728",
+    "0x800125c0": "0x3c05800a",
+    "0x800125c4": "0xc0280e4",
+    "0x800125c8": "0x0"
+   },
+   "reason": "MINI/SNOBO.BIN: loader table entry 3 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/SNOBO.BIN",
+   "values": {
+    "0x0": "0x3d690",
+    "0x4": "0x252cc"
+   },
+   "reason": "MINI/SNOBO.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d44": "0x573",
+    "0x80048d48": "0x13e21",
+    "0x800125d4": "0x3c068018",
+    "0x800125d8": "0x3c048005",
+    "0x800125dc": "0x8c848d44",
+    "0x800125e0": "0x3c058005",
+    "0x800125e4": "0x8ca58d48",
+    "0x800125e8": "0xc00cf8d",
+    "0x800125ec": "0x3821",
+    "0x800125f0": "0xc00d2d1",
+    "0x800125f4": "0x0",
+    "0x800125f8": "0x1440fffd",
+    "0x800125fc": "0x3c048018",
+    "0x80012600": "0xc005728",
+    "0x80012604": "0x3c05800a",
+    "0x80012608": "0xc028112",
+    "0x8001260c": "0x0"
+   },
+   "reason": "MINI/SNOBO2.BIN: loader table entry 4 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/SNOBO2.BIN",
+   "values": {
+    "0x0": "0x418f4",
+    "0x4": "0x252bc"
+   },
+   "reason": "MINI/SNOBO2.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d4c": "0x1efa6",
+    "0x80048d50": "0x1774",
+    "0x80011ddc": "0x3c06800a",
+    "0x80011de0": "0x3c048005",
+    "0x80011de4": "0x8c848d4c",
+    "0x80011de8": "0x3c058005",
+    "0x80011dec": "0x8ca58d50",
+    "0x80011df0": "0xc00cfd0",
+    "0x80011df4": "0x3821",
+    "0x80011df8": "0x92c40000",
+    "0x80011dfc": "0xc028000",
+    "0x80011e00": "0x0",
+    "0x8001277c": "0x3c06800a",
+    "0x80012780": "0x3c048005",
+    "0x80012784": "0x8c848d4c",
+    "0x80012788": "0x3c058005",
+    "0x8001278c": "0x8ca58d50",
+    "0x80012790": "0xc00cfd0",
+    "0x80012794": "0x3821",
+    "0x80012798": "0xc028316",
+    "0x8001279c": "0x0"
+   },
+   "reason": "FIELD/DSCHANGE.X: loader table entry 5 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d54": "0x1efa9",
+    "0x80048d58": "0xf414",
+    "0x80011cb8": "0x3c06800a",
+    "0x80011cbc": "0x3821",
+    "0x80011cc0": "0x3c16800a",
+    "0x80011cc4": "0x26d6d588",
+    "0x80011cc8": "0x3c158007",
+    "0x80011ccc": "0x26b507be",
+    "0x80011cd0": "0x3c048005",
+    "0x80011cd4": "0x8c848d54",
+    "0x80011cd8": "0x3c058005",
+    "0x80011cdc": "0x8ca58d58",
+    "0x80011ce0": "0xc00cfd0",
+    "0x80011ce4": "0x26d2fd18",
+    "0x80011ce8": "0xc02800c",
+    "0x80011cec": "0x0",
+    "0x80011d24": "0x3c06800a",
+    "0x80011d28": "0x3c048005",
+    "0x80011d2c": "0x8c848d54",
+    "0x80011d30": "0x3c058005",
+    "0x80011d34": "0x8ca58d58",
+    "0x80011d38": "0xc00cfd0",
+    "0x80011d3c": "0x3821",
+    "0x80011d40": "0xc028131",
+    "0x80011d44": "0x2021"
+   },
+   "reason": "FIELD/ENDING.X: loader table entry 6 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d5c": "0x27f",
+    "0x80048d60": "0x8ea9",
+    "0x8001254c": "0x3c068018",
+    "0x80012550": "0x3c048005",
+    "0x80012554": "0x8c848d5c",
+    "0x80012558": "0x3c058005",
+    "0x8001255c": "0x8ca58d60",
+    "0x80012560": "0xc00cf8d",
+    "0x80012564": "0x3821",
+    "0x80012568": "0xc00d2d1",
+    "0x8001256c": "0x0",
+    "0x80012570": "0x1440fffd",
+    "0x80012574": "0x3c048018",
+    "0x80012578": "0xc005728",
+    "0x8001257c": "0x3c05800a",
+    "0x80012580": "0xc0280b4",
+    "0x80012584": "0x0"
+   },
+   "reason": "MINI/CHOCOBO.BIN: loader table entry 7 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/CHOCOBO.BIN",
+   "values": {
+    "0x0": "0x1733c",
+    "0x4": "0x3ddec"
+   },
+   "reason": "MINI/CHOCOBO.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d64": "0x9c4",
+    "0x80048d68": "0x36f3",
+    "0x8001265c": "0x3c068018",
+    "0x80012660": "0x3c048005",
+    "0x80012664": "0x8c848d64",
+    "0x80012668": "0x3c058005",
+    "0x8001266c": "0x8ca58d68",
+    "0x80012670": "0xc00cf8d",
+    "0x80012674": "0x3821",
+    "0x80012678": "0xc00d2d1",
+    "0x8001267c": "0x0",
+    "0x80012680": "0x1440fffd",
+    "0x80012684": "0x3c048018",
+    "0x80012688": "0xc005728",
+    "0x8001268c": "0x3c05800a",
+    "0x80012690": "0xc028114",
+    "0x80012694": "0x0"
+   },
+   "reason": "MINI/JET.BIN: loader table entry 8 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/JET.BIN",
+   "values": {
+    "0x0": "0x8918",
+    "0x4": "0x45b18"
+   },
+   "reason": "MINI/JET.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d6c": "0x76c",
+    "0x80048d70": "0x7a6d",
+    "0x800126bc": "0x3c068018",
+    "0x800126c0": "0x3c048005",
+    "0x800126c4": "0x8c848d6c",
+    "0x800126c8": "0x3c058005",
+    "0x800126cc": "0x8ca58d70",
+    "0x800126d0": "0xc00cf8d",
+    "0x800126d4": "0x3821",
+    "0x800126d8": "0xc00d2d1",
+    "0x800126dc": "0x0",
+    "0x800126e0": "0x1440fffd",
+    "0x800126e4": "0x3c048018",
+    "0x800126e8": "0xc005728",
+    "0x800126ec": "0x3c05800a",
+    "0x800126f0": "0x3c02800a",
+    "0x800126f4": "0x2442d5e5",
+    "0x800126f8": "0x90440000",
+    "0x800126fc": "0xc02802f",
+    "0x80012700": "0x0"
+   },
+   "reason": "MINI/SUBMAR.BIN: loader table entry 9 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/SUBMAR.BIN",
+   "values": {
+    "0x0": "0x12e38",
+    "0x4": "0x112d48"
+   },
+   "reason": "MINI/SUBMAR.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048d74": "0x7ad",
+    "0x80048d78": "0x855a",
+    "0x80012508": "0x3c068018",
+    "0x8001250c": "0x3c048005",
+    "0x80012510": "0x8c848d74",
+    "0x80012514": "0x3c058005",
+    "0x80012518": "0x8ca58d78",
+    "0x8001251c": "0xc00cf8d",
+    "0x80012520": "0x3821",
+    "0x80012524": "0xc00d2d1",
+    "0x80012528": "0x0",
+    "0x8001252c": "0x1440fffd",
+    "0x80012530": "0x3c048018",
+    "0x80012534": "0xc005728",
+    "0x80012538": "0x3c05800a",
+    "0x8001253c": "0xc028034",
+    "0x80012540": "0x0"
+   },
+   "reason": "MINI/HIGHWAY.BIN: loader table entry 10 and its load/call sequence"
+  },
+  {
+   "method": "words",
+   "file": "MINI/HIGHWAY.BIN",
+   "values": {
+    "0x0": "0x14f4c",
+    "0x4": "0x6176c"
+   },
+   "reason": "MINI/HIGHWAY.BIN: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80015ca0": "0x27bdffd8",
+    "0x80015ca4": "0x801021",
+    "0x80015ca8": "0xafb1001c",
+    "0x80015cac": "0xa08821",
+    "0x80015cb0": "0xafbf0024",
+    "0x80015cb4": "0xafb20020",
+    "0x80015cb8": "0xafb00018",
+    "0x80015cbc": "0x8c520004",
+    "0x80015cc0": "0x8c500000",
+    "0x80015cc4": "0xc005c42",
+    "0x80015cc8": "0x24440008",
+    "0x80015ccc": "0x1821",
+    "0x80015cd0": "0x129082",
+    "0x80015cd4": "0x108082",
+    "0x80015cd8": "0x108080",
+    "0x80015cdc": "0x12400006",
+    "0x80015ce0": "0x2308821",
+    "0x80015ce4": "0xae200000",
+    "0x80015ce8": "0x24630001",
+    "0x80015cec": "0x72102a",
+    "0x80015cf0": "0x1440fffc",
+    "0x80015cf4": "0x26310004"
+   },
+   "reason": "gunzip 0x80015CA0: size/bss header, inflate src+8 -> dst, zero tail"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x800211b8": "0xaf8400a8",
+    "0x800211bc": "0x3e00008",
+    "0x800211c0": "0x0",
+    "0x800211c4": "0x27bdffe8",
+    "0x800211c8": "0x3c028005",
+    "0x800211cc": "0x24428f60",
+    "0x800211d0": "0x420c0",
+    "0x800211d4": "0x821821",
+    "0x800211d8": "0x441021",
+    "0x800211dc": "0xafbf0010",
+    "0x800211e0": "0x8c640000",
+    "0x800211e4": "0x8c450004",
+    "0x800211e8": "0x8f8600a8",
+    "0x800211ec": "0xc00cf8d",
+    "0x800211f0": "0x3821",
+    "0x80011140": "0x3c1c8006",
+    "0x80011144": "0x279c2d44",
+    "0x80062dec": "0x801d0000"
+   },
+   "reason": "menu loader: gp=0x80062D44, destination word gp+168 initialised to 0x801D0000"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fc0": "0xd32e",
+    "0x80048fc4": "0x1000",
+    "0x800250bc": "0xc008471",
+    "0x800250c0": "0x3404000c",
+    "0x800250c4": "0xc00d2d1",
+    "0x800250c8": "0x0",
+    "0x800250cc": "0x1440fffd",
+    "0x800250d0": "0x0",
+    "0x800250d4": "0xc07409f",
+    "0x800250fc": "0xc008471",
+    "0x80025100": "0x3404000c",
+    "0x80025104": "0xc00d2d1",
+    "0x80025108": "0x0",
+    "0x8002510c": "0x1440fffd",
+    "0x80025110": "0x0",
+    "0x80025114": "0xc074171",
+    "0x80025140": "0xc008471",
+    "0x80025144": "0x3404000c",
+    "0x80025148": "0xc00d2d1",
+    "0x8002514c": "0x0",
+    "0x80025150": "0x1440fffd",
+    "0x80025154": "0x0",
+    "0x80025158": "0xc0741c1"
+   },
+   "reason": "MENU/BGINMENU.MNU: menu table indices [12] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048f90": "0xd323",
+    "0x80048f94": "0x800"
+   },
+   "reason": "MENU/CHNGMENU.MNU: menu table indices [6] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fa0": "0xd329",
+    "0x80048fa4": "0x2800"
+   },
+   "reason": "MENU/CNFGMENU.MNU: menu table indices [8] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048f78": "0xd2e8",
+    "0x80048f7c": "0x17800",
+    "0x80048f80": "0xd2e8",
+    "0x80048f84": "0x17800"
+   },
+   "reason": "MENU/EQIPMENU.MNU: menu table indices [3, 4] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fa8": "0xd377",
+    "0x80048fac": "0xf000",
+    "0x80048fd0": "0xd377",
+    "0x80048fd4": "0xf000",
+    "0x80024de4": "0xc008471",
+    "0x80024de8": "0x3404000e",
+    "0x80024dec": "0xc00d2d1",
+    "0x80024df0": "0x0",
+    "0x80024df4": "0x1440fffd",
+    "0x80024df8": "0x0",
+    "0x80024dfc": "0xc07469b"
+   },
+   "reason": "MENU/FORMMENU.MNU: menu table indices [9, 14] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048f68": "0xd2d9",
+    "0x80048f6c": "0x4800",
+    "0x80024ed4": "0xc008471",
+    "0x80024ed8": "0x34040001",
+    "0x80024edc": "0xc00d2d1",
+    "0x80024ee0": "0x0",
+    "0x80024ee4": "0x1440fffd",
+    "0x80024ee8": "0x0",
+    "0x80024eec": "0xc074b5d",
+    "0x80024f0c": "0xc008471",
+    "0x80024f10": "0x34040001",
+    "0x80024f14": "0xc00d2d1",
+    "0x80024f18": "0x0",
+    "0x80024f1c": "0x1440fffd",
+    "0x80024f20": "0x0",
+    "0x80024f24": "0xc074ba1",
+    "0x80024f4c": "0xc008471",
+    "0x80024f50": "0x34040001",
+    "0x80024f54": "0xc00d2d1",
+    "0x80024f58": "0x0",
+    "0x80024f5c": "0x1440fffd",
+    "0x80024f60": "0x0",
+    "0x80024f64": "0xc074bc0",
+    "0x80024f90": "0xc008471",
+    "0x80024f94": "0x34040001",
+    "0x80024f98": "0xc00d2d1",
+    "0x80024f9c": "0x0",
+    "0x80024fa0": "0x1440fffd",
+    "0x80024fa4": "0x0",
+    "0x80024fa8": "0xc074c4e",
+    "0x80024fd4": "0xc008471",
+    "0x80024fd8": "0x34040001",
+    "0x80024fdc": "0xc00d2d1",
+    "0x80024fe0": "0x0",
+    "0x80024fe4": "0x1440fffd",
+    "0x80024fe8": "0x0",
+    "0x80024fec": "0xc074c06",
+    "0x80025010": "0xc008471",
+    "0x80025014": "0x34040001",
+    "0x80025018": "0xc00d2d1",
+    "0x8002501c": "0x0",
+    "0x80025020": "0x1440fffd",
+    "0x80025024": "0x0",
+    "0x80025028": "0xc074c8a"
+   },
+   "reason": "MENU/ITEMMENU.MNU: menu table indices [1] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048f98": "0xd324",
+    "0x80048f9c": "0x2800",
+    "0x800260a8": "0xc008471",
+    "0x800260ac": "0x34040007",
+    "0x800260b0": "0xc00d2d1",
+    "0x800260b4": "0x0",
+    "0x800260b8": "0x1440fffd",
+    "0x800260bc": "0x0",
+    "0x800260c0": "0xc07446a"
+   },
+   "reason": "MENU/LIMTMENU.MNU: menu table indices [7] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048f70": "0xd2e2",
+    "0x80048f74": "0x3000"
+   },
+   "reason": "MENU/MGICMENU.MNU: menu table indices [2] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fc8": "0xd35e",
+    "0x80048fcc": "0xc800",
+    "0x80024d98": "0xc008471",
+    "0x80024d9c": "0x3404000d",
+    "0x80024da0": "0xc00d2d1",
+    "0x80024da4": "0x0",
+    "0x80024da8": "0x1440fffd",
+    "0x80024dac": "0x0",
+    "0x80024db0": "0xc00f3b7",
+    "0x80024db4": "0x3404001e",
+    "0x80024db8": "0xc0744c7"
+   },
+   "reason": "MENU/NAMEMENU.MNU: menu table indices [13] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fb8": "0xd34f",
+    "0x80048fbc": "0x7800"
+   },
+   "reason": "MENU/PATYMENU.MNU: menu table indices [11] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fb0": "0xd395",
+    "0x80048fb4": "0x1c000",
+    "0x80024e9c": "0xc008471",
+    "0x80024ea0": "0x3404000a",
+    "0x80024ea4": "0xc00d2d1",
+    "0x80024ea8": "0x0",
+    "0x80024eac": "0x1440fffd",
+    "0x80024eb0": "0x0",
+    "0x80024eb4": "0xc0745dd",
+    "0x80048fe0": "0xd395",
+    "0x80048fe4": "0x1c000",
+    "0x80024e64": "0xc008471",
+    "0x80024e68": "0x34040010",
+    "0x80024e6c": "0xc00d2d1",
+    "0x80024e70": "0x0",
+    "0x80024e74": "0x1440fffd",
+    "0x80024e78": "0x0",
+    "0x80024e7c": "0xc075330"
+   },
+   "reason": "MENU/SAVEMENU.MNU: menu table indices [10, 16] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048fd8": "0xd330",
+    "0x80048fdc": "0xf800",
+    "0x80024e28": "0xc008471",
+    "0x80024e2c": "0x3404000f",
+    "0x80024e30": "0xc00d2d1",
+    "0x80024e34": "0x0",
+    "0x80024e38": "0x1440fffd",
+    "0x80024e3c": "0x0",
+    "0x80024e40": "0xc075046"
+   },
+   "reason": "MENU/SHOPMENU.MNU: menu table indices [15] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80048f88": "0xd317",
+    "0x80048f8c": "0x6000"
+   },
+   "reason": "MENU/STATMENU.MNU: menu table indices [5] and their load/call sequences"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80014578": "0x27bdffe8",
+    "0x8001457c": "0xc03821",
+    "0x80014580": "0x410c0",
+    "0x80014584": "0xa03021",
+    "0x80014588": "0xafbf0010",
+    "0x8001458c": "0x3c018005",
+    "0x80014590": "0x220821",
+    "0x80014594": "0x8c248d84",
+    "0x80014598": "0x3c018005",
+    "0x8001459c": "0x220821",
+    "0x800145a0": "0x8c258d88",
+    "0x800145a4": "0xc00cf8d",
+    "0x800145a8": "0x0",
+    "0x80014610": "0x27bdf7e8",
+    "0x80014614": "0xafbf0810",
+    "0x80014618": "0x34040266",
+    "0x8001461c": "0x34050800",
+    "0x80014620": "0x27a60010",
+    "0x80014624": "0xc00cf8d",
+    "0x80014628": "0x3821",
+    "0x8001462c": "0xc00516f",
+    "0x80014630": "0x2021",
+    "0x80014634": "0x3c048005",
+    "0x80014638": "0x24848d84",
+    "0x8001463c": "0x27a50010",
+    "0x80014640": "0xc005280",
+    "0x80014644": "0x34060050",
+    "0x80014658": "0x27bdffe8",
+    "0x8001465c": "0xafb00010",
+    "0x80014660": "0xa08021",
+    "0x80014664": "0x3c05801b",
+    "0x80014668": "0xafbf0014",
+    "0x8001466c": "0xc00515e",
+    "0x80014670": "0x3021",
+    "0x80014674": "0xc00516f",
+    "0x80014678": "0x2021",
+    "0x8001467c": "0x3c04801b",
+    "0x80014680": "0xc005728",
+    "0x80014684": "0x3c05800a",
+    "0x80014688": "0x200f809",
+    "0x8001468c": "0x0"
+   },
+   "reason": "battle file table: YAMADA.BIN (LBA 0x266) copied to 0x80048D84; reader 0x80014578; load/gunzip/call 0x80014658"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x800146f0": "0x3c05800a",
+    "0x800146f4": "0x24a500cc",
+    "0x800146f8": "0xc005196",
+    "0x800146fc": "0x34040003"
+   },
+   "reason": "BATTLE/BROM.X: 0x80014658(index 3, entry 0x800a00cc)"
+  },
+  {
+   "method": "words",
+   "file": "INIT/YAMADA.BIN",
+   "values": {
+    "0x18": "0x451b",
+    "0x1c": "0x476"
+   },
+   "reason": "BATTLE/BROM.X: battle file table entry 3 (LBA, size)"
+  },
+  {
+   "method": "words",
+   "file": "BATTLE/BROM.X",
+   "values": {
+    "0x0": "0x6cc",
+    "0x4": "0x4078"
+   },
+   "reason": "BATTLE/BROM.X: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "SCUS_941.63",
+   "base": "0x8000f800",
+   "values": {
+    "0x80014710": "0x3c05800a",
+    "0x80014714": "0x24a51158",
+    "0x80014718": "0xc005196",
+    "0x8001471c": "0x34040005"
+   },
+   "reason": "BATTLE/BATTLE.X: 0x80014658(index 5, entry 0x800a1158)"
+  },
+  {
+   "method": "words",
+   "file": "INIT/YAMADA.BIN",
+   "values": {
+    "0x28": "0x4523",
+    "0x2c": "0x1fd12"
+   },
+   "reason": "BATTLE/BATTLE.X: battle file table entry 5 (LBA, size)"
+  },
+  {
+   "method": "words",
+   "file": "BATTLE/BATTLE.X",
+   "values": {
+    "0x0": "0x538ac",
+    "0x4": "0x741d8"
+   },
+   "reason": "BATTLE/BATTLE.X: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800a1214": "0x13c20009",
+    "0x800a1218": "0x8021",
+    "0x800a121c": "0x3c13800b",
+    "0x800a1220": "0x267333a4",
+    "0x800a1224": "0x3c10800a",
+    "0x800a1228": "0x26103354",
+    "0x800a122c": "0x3c12801b",
+    "0x800a1230": "0x26520490",
+    "0x800a1234": "0x8028494",
+    "0x800a1238": "0x34040006",
+    "0x800a123c": "0x3c13800b",
+    "0x800a1240": "0x267330e4",
+    "0x800a1244": "0x3c12801b",
+    "0x800a1248": "0x26520050",
+    "0x800a124c": "0x34040006",
+    "0x800a1250": "0x3c05801c",
+    "0x800a1254": "0xc00515e",
+    "0x800a1258": "0x3021",
+    "0x800a125c": "0xc00516f",
+    "0x800a1260": "0x2002021",
+    "0x800a1264": "0x3c04801c",
+    "0x800a1268": "0xc005728",
+    "0x800a126c": "0x3c05801b",
+    "0x800a1270": "0x240f809",
+    "0x800a1274": "0x2202021"
+   },
+   "reason": "BATTLE.X: BATINI.X (index 6) -> 0x801C0000, gunzip to 0x801B0000, jalr 0x801B0490 / 0x801B0050"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800a16fc": "0x27deffff",
+    "0x800a1700": "0x34040008",
+    "0x800a1704": "0x3c05801c",
+    "0x800a1708": "0xc00515e",
+    "0x800a170c": "0x3021",
+    "0x800a1710": "0x3c04800a",
+    "0x800a1714": "0x24843354",
+    "0x800a1718": "0xc00516f",
+    "0x800a171c": "0x8021",
+    "0x800a1720": "0x3c04801c",
+    "0x800a1724": "0xc005728",
+    "0x800a1728": "0x3c05801b",
+    "0x800a172c": "0xc06c000",
+    "0x800a1730": "0x0"
+   },
+   "reason": "BATTLE.X: BATRES.X (index 8) -> 0x801C0000, gunzip to 0x801B0000, jal 0x801B0000"
+  },
+  {
+   "method": "words",
+   "file": "INIT/YAMADA.BIN",
+   "values": {
+    "0x30": "0x4563",
+    "0x34": "0x1640"
+   },
+   "reason": "BATTLE/BATINI.X: battle file table entry 6 (LBA, size)"
+  },
+  {
+   "method": "words",
+   "file": "BATTLE/BATINI.X",
+   "values": {
+    "0x0": "0x27b4",
+    "0x4": "0x0"
+   },
+   "reason": "BATTLE/BATINI.X: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "INIT/YAMADA.BIN",
+   "values": {
+    "0x40": "0x45ea",
+    "0x44": "0xe1e"
+   },
+   "reason": "BATTLE/BATRES.X: battle file table entry 8 (LBA, size)"
+  },
+  {
+   "method": "words",
+   "file": "BATTLE/BATRES.X",
+   "values": {
+    "0x0": "0x193c",
+    "0x4": "0x4"
+   },
+   "reason": "BATTLE/BATRES.X: header the gunzip routine 0x80015CA0 reads (decoded size, zero-filled tail)"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800d088c": "0x27bdffe8",
+    "0x800d0890": "0xafbf0010",
+    "0x800d0894": "0x3c06801b",
+    "0x800d0898": "0xc00cf8d",
+    "0x800d089c": "0x3821",
+    "0x800d08a0": "0xc02dfed",
+    "0x800d08a4": "0x0",
+    "0x800d08a8": "0x8fbf0010",
+    "0x800d08ac": "0x27bd0018",
+    "0x800d08b0": "0x3e00008",
+    "0x800d08b4": "0x0",
+    "0x800d14e0": "0x3c01800f",
+    "0x800d14e4": "0x2421f6d8",
+    "0x800d14e8": "0x220821",
+    "0x800d14ec": "0x84220000",
+    "0x800d14f0": "0x0",
+    "0x800d14f4": "0x210c0",
+    "0x800d14f8": "0x3c01800f",
+    "0x800d14fc": "0x2421ebb8",
+    "0x800d1500": "0x220821",
+    "0x800d1504": "0x8c240000",
+    "0x800d1508": "0x3c01800f",
+    "0x800d150c": "0x2421ebbc",
+    "0x800d1510": "0x220821",
+    "0x800d1514": "0x8c250000",
+    "0x800d1518": "0xc034223",
+    "0x800d151c": "0x0"
+   },
+   "reason": "BATTLE.X: effect loader 0x800D088C reads table 0x800EEBB8 entry raw to 0x801B0000"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebb8": "0x77f3",
+    "0x800eebbc": "0x1800"
+   },
+   "reason": "MAGIC/CAREL.BIN: effect table entry 0"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebc0": "0x77f6",
+    "0x800eebc4": "0x10800"
+   },
+   "reason": "MAGIC/FIRE.BIN: effect table entry 1"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebc8": "0x7817",
+    "0x800eebcc": "0xd800"
+   },
+   "reason": "MAGIC/FAIRA.BIN: effect table entry 2"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebd0": "0x7832",
+    "0x800eebd4": "0x11000"
+   },
+   "reason": "MAGIC/THUNDER.BIN: effect table entry 3"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebd8": "0x7854",
+    "0x800eebdc": "0x19800"
+   },
+   "reason": "MAGIC/THUNDERA.BIN: effect table entry 4"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebe0": "0x7887",
+    "0x800eebe4": "0x24000"
+   },
+   "reason": "MAGIC/THUNDG1.BIN: effect table entry 5"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebe8": "0x78cf",
+    "0x800eebec": "0x22000"
+   },
+   "reason": "MAGIC/THUNDG2.BIN: effect table entry 6"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebf0": "0x7913",
+    "0x800eebf4": "0x1800"
+   },
+   "reason": "MAGIC/BRIZAD.BIN: effect table entry 7"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eebf8": "0x7916",
+    "0x800eebfc": "0x9000"
+   },
+   "reason": "MAGIC/BRIZARA.BIN: effect table entry 8"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec00": "0x7928",
+    "0x800eec04": "0x21000"
+   },
+   "reason": "MAGIC/GRAVIDE.BIN: effect table entry 9"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec08": "0x796a",
+    "0x800eec0c": "0xb000"
+   },
+   "reason": "MAGIC/SLOW.BIN: effect table entry 10"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec10": "0x7980",
+    "0x800eec14": "0x1000"
+   },
+   "reason": "MAGIC/BARRIER.BIN: effect table entry 11"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec18": "0x7982",
+    "0x800eec1c": "0x1000"
+   },
+   "reason": "MAGIC/MABARIA.BIN: effect table entry 12"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec20": "0x7984",
+    "0x800eec24": "0x1000"
+   },
+   "reason": "MAGIC/REFREC.BIN: effect table entry 13"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec28": "0x7986",
+    "0x800eec2c": "0x21800"
+   },
+   "reason": "MAGIC/BERSERK.BIN: effect table entry 14"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec30": "0x79c9",
+    "0x800eec34": "0x43800"
+   },
+   "reason": "MAGIC/RIVA.BIN: effect table entry 15"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec38": "0x7a50",
+    "0x800eec3c": "0x8800"
+   },
+   "reason": "MAGIC/THREAT.BIN: effect table entry 16"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec40": "0x7a61",
+    "0x800eec44": "0x8800"
+   },
+   "reason": "MAGIC/IYASHI.BIN: effect table entry 17"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec48": "0x7a72",
+    "0x800eec4c": "0xf000"
+   },
+   "reason": "MAGIC/BLAVER.BIN: effect table entry 18"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec50": "0x7a90",
+    "0x800eec54": "0x3800"
+   },
+   "reason": "MAGIC/KYOGIRI.BIN: effect table entry 19"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec58": "0x7a97",
+    "0x800eec5c": "0x5800"
+   },
+   "reason": "MAGIC/HVSHOT.BIN: effect table entry 20"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec60": "0x7aa2",
+    "0x800eec64": "0x19000"
+   },
+   "reason": "MAGIC/LASER.BIN: effect table entry 21"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec68": "0x7ad4",
+    "0x800eec6c": "0x17000"
+   },
+   "reason": "MAGIC/DEJON.BIN: effect table entry 22"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec70": "0x7b02",
+    "0x800eec74": "0x13000"
+   },
+   "reason": "MAGIC/TORNADO.BIN: effect table entry 23"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec78": "0x7b28",
+    "0x800eec7c": "0x21000"
+   },
+   "reason": "MAGIC/GRAVIRA.BIN: effect table entry 24"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec80": "0x7b6a",
+    "0x800eec84": "0x21800"
+   },
+   "reason": "MAGIC/GRAVIGA1.BIN: effect table entry 25"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec88": "0x7bad",
+    "0x800eec8c": "0x24000"
+   },
+   "reason": "MAGIC/GRAVIGA2.BIN: effect table entry 26"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec90": "0x7bf5",
+    "0x800eec94": "0x23800"
+   },
+   "reason": "MAGIC/COMET.BIN: effect table entry 27"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eec98": "0x7c3c",
+    "0x800eec9c": "0x8000"
+   },
+   "reason": "MAGIC/BIO.BIN: effect table entry 28"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeca0": "0x7c4c",
+    "0x800eeca4": "0x1d000"
+   },
+   "reason": "MAGIC/BIORA.BIN: effect table entry 29"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeca8": "0x7c86",
+    "0x800eecac": "0x24800"
+   },
+   "reason": "MAGIC/COMETEO.BIN: effect table entry 30"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecb0": "0x7ccf",
+    "0x800eecb4": "0x32000"
+   },
+   "reason": "MAGIC/BIOGA1.BIN: effect table entry 31"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecb8": "0x7d33",
+    "0x800eecbc": "0x33800"
+   },
+   "reason": "MAGIC/BIOGA2.BIN: effect table entry 32"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecc0": "0x7d9a",
+    "0x800eecc4": "0x1d800"
+   },
+   "reason": "MAGIC/BREAK.BIN: effect table entry 33"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecc8": "0x7dd5",
+    "0x800eeccc": "0x1000"
+   },
+   "reason": "MAGIC/ESCAPE.BIN: effect table entry 34"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecd0": "0x7dd7",
+    "0x800eecd4": "0x5000"
+   },
+   "reason": "MAGIC/ESNA.BIN: effect table entry 35"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecd8": "0x7de1",
+    "0x800eecdc": "0x10800"
+   },
+   "reason": "MAGIC/RESIST.BIN: effect table entry 36"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eece0": "0x7e02",
+    "0x800eece4": "0x5000"
+   },
+   "reason": "MAGIC/W_WIND.BIN: effect table entry 37"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eece8": "0x7e0c",
+    "0x800eecec": "0x1800"
+   },
+   "reason": "MAGIC/ELEVATOR.BIN: effect table entry 38"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecf0": "0x7e0f",
+    "0x800eecf4": "0x24000"
+   },
+   "reason": "MAGIC/TITAN.BIN: effect table entry 39"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eecf8": "0x7e57",
+    "0x800eecfc": "0x38000"
+   },
+   "reason": "MAGIC/LAMU.BIN: effect table entry 40"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed00": "0x7ec7",
+    "0x800eed04": "0x40800"
+   },
+   "reason": "MAGIC/IFLEET.BIN: effect table entry 41"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed08": "0x7f48",
+    "0x800eed0c": "0x40800"
+   },
+   "reason": "MAGIC/SIVA.BIN: effect table entry 42"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed10": "0x7fc9",
+    "0x800eed14": "0x26000"
+   },
+   "reason": "MAGIC/FREEZE.BIN: effect table entry 43"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed18": "0x8015",
+    "0x800eed1c": "0xe000"
+   },
+   "reason": "MAGIC/FLAME.BIN: effect table entry 44"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed20": "0x8031",
+    "0x800eed24": "0x800"
+   },
+   "reason": "MAGIC/ALMIGHTY.BIN: effect table entry 45"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed28": "0x8032",
+    "0x800eed2c": "0x13000"
+   },
+   "reason": "MAGIC/WHIRL.BIN: effect table entry 46"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed30": "0x8058",
+    "0x800eed34": "0x800"
+   },
+   "reason": "MAGIC/TEARS.BIN: effect table entry 47"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed38": "0x8059",
+    "0x800eed3c": "0x3800"
+   },
+   "reason": "MAGIC/TIMEDMG.BIN: effect table entry 48"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed40": "0x8060",
+    "0x800eed44": "0x21000"
+   },
+   "reason": "MAGIC/SLIPL.BIN: effect table entry 49"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed48": "0x80a2",
+    "0x800eed4c": "0x23800"
+   },
+   "reason": "MAGIC/HEIST.BIN: effect table entry 50"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed50": "0x80e9",
+    "0x800eed54": "0x2d000"
+   },
+   "reason": "MAGIC/QUEIR.BIN: effect table entry 51"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed58": "0x8143",
+    "0x800eed5c": "0x36800"
+   },
+   "reason": "MAGIC/QUEIG.BIN: effect table entry 52"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed60": "0x81b0",
+    "0x800eed64": "0x21000"
+   },
+   "reason": "MAGIC/QUEIK.BIN: effect table entry 53"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed68": "0x81f2",
+    "0x800eed6c": "0x21000"
+   },
+   "reason": "MAGIC/SAILESS.BIN: effect table entry 54"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed70": "0x8234",
+    "0x800eed74": "0x1b800"
+   },
+   "reason": "MAGIC/STOP.BIN: effect table entry 55"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed78": "0x826b",
+    "0x800eed7c": "0x3b800"
+   },
+   "reason": "MAGIC/FLEA.BIN: effect table entry 56"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed80": "0x82e2",
+    "0x800eed84": "0x33000"
+   },
+   "reason": "MAGIC/FAIGA.BIN: effect table entry 57"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed88": "0x8348",
+    "0x800eed8c": "0x2b000"
+   },
+   "reason": "MAGIC/BRIZAG.BIN: effect table entry 58"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed90": "0x839e",
+    "0x800eed94": "0x2c000"
+   },
+   "reason": "MAGIC/BEATA.BIN: effect table entry 59"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eed98": "0x83f6",
+    "0x800eed9c": "0x2a000"
+   },
+   "reason": "MAGIC/ALTEMA.BIN: effect table entry 60"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeda0": "0x844a",
+    "0x800eeda4": "0x1e000"
+   },
+   "reason": "MAGIC/DEBARIA.BIN: effect table entry 61"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeda8": "0x8486",
+    "0x800eedac": "0x3c000"
+   },
+   "reason": "MAGIC/SFLEA.BIN: effect table entry 62"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedb0": "0x84fe",
+    "0x800eedb4": "0x20800"
+   },
+   "reason": "MAGIC/DETHPER.BIN: effect table entry 63"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedb8": "0x853f",
+    "0x800eedbc": "0x1d800"
+   },
+   "reason": "MAGIC/MINIMAM.BIN: effect table entry 64"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedc0": "0x857a",
+    "0x800eedc4": "0x1f800"
+   },
+   "reason": "MAGIC/TODO.BIN: effect table entry 65"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedc8": "0x85b9",
+    "0x800eedcc": "0x29800"
+   },
+   "reason": "MAGIC/TRAINN.BIN: effect table entry 66"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedd0": "0x860c",
+    "0x800eedd4": "0x29000"
+   },
+   "reason": "MAGIC/MAGIKAL.BIN: effect table entry 67"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedd8": "0x865e",
+    "0x800eeddc": "0x29800"
+   },
+   "reason": "MAGIC/AQUA.BIN: effect table entry 68"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eede0": "0x86b1",
+    "0x800eede4": "0x24000"
+   },
+   "reason": "MAGIC/GOBLINP.BIN: effect table entry 69"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eede8": "0x86f9",
+    "0x800eedec": "0x23800"
+   },
+   "reason": "MAGIC/HATENA.BIN: effect table entry 70"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedf0": "0x8740",
+    "0x800eedf4": "0x1f800"
+   },
+   "reason": "MAGIC/KUSAI.BIN: effect table entry 71"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eedf8": "0x877f",
+    "0x800eedfc": "0x1a000"
+   },
+   "reason": "MAGIC/HANMMER.BIN: effect table entry 72"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee00": "0x87b3",
+    "0x800eee04": "0x2b000"
+   },
+   "reason": "MAGIC/DRAGONN.BIN: effect table entry 73"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee08": "0x8809",
+    "0x800eee0c": "0x26000"
+   },
+   "reason": "MAGIC/KAERU.BIN: effect table entry 74"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee10": "0x8855",
+    "0x800eee14": "0x21000"
+   },
+   "reason": "MAGIC/DETHFO.BIN: effect table entry 75"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee18": "0x8897",
+    "0x800eee1c": "0x29000"
+   },
+   "reason": "MAGIC/LV5DETH.BIN: effect table entry 76"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee20": "0x88e9",
+    "0x800eee24": "0x2c000"
+   },
+   "reason": "MAGIC/FAIGA2.BIN: effect table entry 77"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee28": "0x8941",
+    "0x800eee2c": "0x24000"
+   },
+   "reason": "MAGIC/REAZER.BIN: effect table entry 78"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee30": "0x8989",
+    "0x800eee34": "0x2e800"
+   },
+   "reason": "MAGIC/MATRA.BIN: effect table entry 79"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee38": "0x89e6",
+    "0x800eee3c": "0x22000"
+   },
+   "reason": "MAGIC/LV4JIBAK.BIN: effect table entry 80"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee40": "0x8a2a",
+    "0x800eee44": "0x2a000"
+   },
+   "reason": "MAGIC/MYTYG.BIN: effect table entry 81"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee48": "0x8a7e",
+    "0x800eee4c": "0x33000"
+   },
+   "reason": "MAGIC/NANNTOKA.BIN: effect table entry 82"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee50": "0x8ae4",
+    "0x800eee54": "0x1d800"
+   },
+   "reason": "MAGIC/SENNKOKU.BIN: effect table entry 83"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee58": "0x8b1f",
+    "0x800eee5c": "0x2c000"
+   },
+   "reason": "MAGIC/RAISE.BIN: effect table entry 84"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee60": "0x8b77",
+    "0x800eee64": "0x27800"
+   },
+   "reason": "MAGIC/DEATH.BIN: effect table entry 85"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee68": "0x8bc6",
+    "0x800eee6c": "0x2f800"
+   },
+   "reason": "MAGIC/CONF.BIN: effect table entry 86"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee70": "0x8c25",
+    "0x800eee74": "0x11000"
+   },
+   "reason": "MAGIC/ONPA.BIN: effect table entry 87"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee78": "0x8c47",
+    "0x800eee7c": "0x20000"
+   },
+   "reason": "MAGIC/BACUME.BIN: effect table entry 88"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee80": "0x8c87",
+    "0x800eee84": "0x1d800"
+   },
+   "reason": "MAGIC/SEARCH.BIN: effect table entry 89"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee88": "0x8cc2",
+    "0x800eee8c": "0x1c800"
+   },
+   "reason": "MAGIC/HARI1000.BIN: effect table entry 90"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee90": "0x8cfb",
+    "0x800eee94": "0x1c000"
+   },
+   "reason": "MAGIC/SEED.BIN: effect table entry 91"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eee98": "0x8d33",
+    "0x800eee9c": "0x1c000"
+   },
+   "reason": "MAGIC/MGBEAM.BIN: effect table entry 92"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeea0": "0x8d6b",
+    "0x800eeea4": "0x1a800"
+   },
+   "reason": "MAGIC/TAN.BIN: effect table entry 93"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeea8": "0x8da0",
+    "0x800eeeac": "0x2a800"
+   },
+   "reason": "MAGIC/KIEN.BIN: effect table entry 94"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeeb0": "0x8df5",
+    "0x800eeeb4": "0x26000"
+   },
+   "reason": "MAGIC/KONOHA.BIN: effect table entry 95"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeeb8": "0x8e41",
+    "0x800eeebc": "0x23000"
+   },
+   "reason": "MAGIC/SUNA.BIN: effect table entry 96"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeec0": "0x8e87",
+    "0x800eeec4": "0x1e800"
+   },
+   "reason": "MAGIC/ITO.BIN: effect table entry 97"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeec8": "0x8ec4",
+    "0x800eeecc": "0x21000"
+   },
+   "reason": "MAGIC/HIKARI.BIN: effect table entry 98"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeed0": "0x8f06",
+    "0x800eeed4": "0x1d800"
+   },
+   "reason": "MAGIC/LASER2.BIN: effect table entry 99"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeed8": "0x8f41",
+    "0x800eeedc": "0x38800"
+   },
+   "reason": "MAGIC/YU_WAKU.BIN: effect table entry 100"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeee0": "0x8fb2",
+    "0x800eeee4": "0x3a000"
+   },
+   "reason": "MAGIC/BLASTER.BIN: effect table entry 101"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeee8": "0x9026",
+    "0x800eeeec": "0x32000"
+   },
+   "reason": "MAGIC/MISSILE.BIN: effect table entry 102"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeef0": "0x908a",
+    "0x800eeef4": "0x31800"
+   },
+   "reason": "MAGIC/KAMA.BIN: effect table entry 103"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeef8": "0x90ed",
+    "0x800eeefc": "0x26000"
+   },
+   "reason": "MAGIC/Q_KETSU.BIN: effect table entry 104"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef00": "0x9139",
+    "0x800eef04": "0x1d800"
+   },
+   "reason": "MAGIC/SUMI.BIN: effect table entry 105"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef08": "0x9174",
+    "0x800eef0c": "0x39800"
+   },
+   "reason": "MAGIC/KAMA2.BIN: effect table entry 106"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef10": "0x91e7",
+    "0x800eef14": "0x20800"
+   },
+   "reason": "MAGIC/JIBAKU1.BIN: effect table entry 107"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef18": "0x9228",
+    "0x800eef1c": "0x26000"
+   },
+   "reason": "MAGIC/Q_SHU.BIN: effect table entry 108"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef20": "0x9274",
+    "0x800eef24": "0x3b000"
+   },
+   "reason": "MAGIC/OSEN.BIN: effect table entry 109"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef28": "0x92ea",
+    "0x800eef2c": "0x3b800"
+   },
+   "reason": "MAGIC/TRIANGLE.BIN: effect table entry 110"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef30": "0x9361",
+    "0x800eef34": "0x2b000"
+   },
+   "reason": "MAGIC/MIZU.BIN: effect table entry 111"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef38": "0x93b7",
+    "0x800eef3c": "0x31800"
+   },
+   "reason": "MAGIC/HARRIER.BIN: effect table entry 112"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef40": "0x941a",
+    "0x800eef44": "0x2b000"
+   },
+   "reason": "MAGIC/RAKUSEKI.BIN: effect table entry 113"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef48": "0x9470",
+    "0x800eef4c": "0x2a800"
+   },
+   "reason": "MAGIC/CBREATH.BIN: effect table entry 114"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef50": "0x94c5",
+    "0x800eef54": "0x3f000"
+   },
+   "reason": "MAGIC/ATOMIC.BIN: effect table entry 115"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef58": "0x9543",
+    "0x800eef5c": "0x2e800"
+   },
+   "reason": "MAGIC/NONOSHI.BIN: effect table entry 116"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef60": "0x95a0",
+    "0x800eef64": "0x3c800"
+   },
+   "reason": "MAGIC/OIL.BIN: effect table entry 117"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef68": "0x9619",
+    "0x800eef6c": "0x31000"
+   },
+   "reason": "MAGIC/DOKUFUKI.BIN: effect table entry 118"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef70": "0x967b",
+    "0x800eef74": "0x29000"
+   },
+   "reason": "MAGIC/DOKUEKI.BIN: effect table entry 119"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef78": "0x96cd",
+    "0x800eef7c": "0x3a800"
+   },
+   "reason": "MAGIC/FUBUKI.BIN: effect table entry 120"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef80": "0x9742",
+    "0x800eef84": "0x3f800"
+   },
+   "reason": "MAGIC/QUASAR.BIN: effect table entry 121"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef88": "0x97c1",
+    "0x800eef8c": "0x34800"
+   },
+   "reason": "MAGIC/SOUTHERN.BIN: effect table entry 122"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef90": "0x982a",
+    "0x800eef94": "0x34800"
+   },
+   "reason": "MAGIC/NORTHERN.BIN: effect table entry 123"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eef98": "0x9893",
+    "0x800eef9c": "0x26000"
+   },
+   "reason": "MAGIC/SCOPE.BIN: effect table entry 124"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefa0": "0x98df",
+    "0x800eefa4": "0x19800"
+   },
+   "reason": "MAGIC/TOBOE.BIN: effect table entry 125"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefa8": "0x9912",
+    "0x800eefac": "0x3a000"
+   },
+   "reason": "MAGIC/KAFUN.BIN: effect table entry 126"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefb0": "0x9986",
+    "0x800eefb4": "0x2b000"
+   },
+   "reason": "MAGIC/OTSUNAMI.BIN: effect table entry 127"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefb8": "0x99dc",
+    "0x800eefbc": "0x3a000"
+   },
+   "reason": "MAGIC/SMOG2.BIN: effect table entry 128"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefc0": "0x9a50",
+    "0x800eefc4": "0x19800"
+   },
+   "reason": "MAGIC/KINZAN.BIN: effect table entry 129"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefc8": "0x9a83",
+    "0x800eefcc": "0x1b000"
+   },
+   "reason": "MAGIC/CHIKASUI.BIN: effect table entry 130"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefd0": "0x9ab9",
+    "0x800eefd4": "0x32000"
+   },
+   "reason": "MAGIC/AWA.BIN: effect table entry 131"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefd8": "0x9b1d",
+    "0x800eefdc": "0x3a800"
+   },
+   "reason": "MAGIC/THUNDER2.BIN: effect table entry 132"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefe0": "0x9b92",
+    "0x800eefe4": "0x1b000"
+   },
+   "reason": "MAGIC/ONSEN.BIN: effect table entry 133"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eefe8": "0x9bc8",
+    "0x800eefec": "0x1b000"
+   },
+   "reason": "MAGIC/MAGMA.BIN: effect table entry 134"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeff0": "0x9bfe",
+    "0x800eeff4": "0x3e800"
+   },
+   "reason": "MAGIC/NETSU.BIN: effect table entry 135"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800eeff8": "0x9c7b",
+    "0x800eeffc": "0x25800"
+   },
+   "reason": "MAGIC/GEKI1.BIN: effect table entry 136"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef000": "0x9cc6",
+    "0x800ef004": "0x3c000"
+   },
+   "reason": "MAGIC/GEKI2.BIN: effect table entry 137"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef008": "0x9d3e",
+    "0x800ef00c": "0x1a000"
+   },
+   "reason": "MAGIC/AEROGA.BIN: effect table entry 138"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef010": "0x9d72",
+    "0x800ef014": "0x1e800"
+   },
+   "reason": "MAGIC/HAKAI.BIN: effect table entry 139"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef018": "0x9daf",
+    "0x800ef01c": "0x31000"
+   },
+   "reason": "MAGIC/WLASER.BIN: effect table entry 140"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef020": "0x9e11",
+    "0x800ef024": "0x3a000"
+   },
+   "reason": "MAGIC/TSURARA.BIN: effect table entry 141"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef028": "0x9e85",
+    "0x800ef02c": "0x3a800"
+   },
+   "reason": "MAGIC/JIBAKU2.BIN: effect table entry 142"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef030": "0x9efa",
+    "0x800ef034": "0x3c000"
+   },
+   "reason": "MAGIC/KAEN.BIN: effect table entry 143"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef038": "0x9f72",
+    "0x800ef03c": "0x3c800"
+   },
+   "reason": "MAGIC/KAEN2.BIN: effect table entry 144"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef040": "0x9feb",
+    "0x800ef044": "0x3e800"
+   },
+   "reason": "MAGIC/REIKI.BIN: effect table entry 145"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef048": "0xa068",
+    "0x800ef04c": "0x21000"
+   },
+   "reason": "MAGIC/HIKARI2.BIN: effect table entry 146"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef050": "0xa0aa",
+    "0x800ef054": "0x21000"
+   },
+   "reason": "MAGIC/HIKARI3.BIN: effect table entry 147"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef058": "0xa0ec",
+    "0x800ef05c": "0x1b000"
+   },
+   "reason": "MAGIC/MAGMA2.BIN: effect table entry 148"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef060": "0xa122",
+    "0x800ef064": "0x2d000"
+   },
+   "reason": "MAGIC/SEALD.BIN: effect table entry 149"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef068": "0xa17c",
+    "0x800ef06c": "0x29000"
+   },
+   "reason": "MAGIC/HEATBU.BIN: effect table entry 150"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef070": "0xa1ce",
+    "0x800ef074": "0x1f800"
+   },
+   "reason": "MAGIC/AYASII.BIN: effect table entry 151"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef078": "0xa20d",
+    "0x800ef07c": "0x20000"
+   },
+   "reason": "MAGIC/DAISENP.BIN: effect table entry 152"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef080": "0xa24d",
+    "0x800ef084": "0x1d000"
+   },
+   "reason": "MAGIC/UTAGOE.BIN: effect table entry 153"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef088": "0xa287",
+    "0x800ef08c": "0x2a000"
+   },
+   "reason": "MAGIC/ZENBAKU.BIN: effect table entry 154"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef090": "0xa2db",
+    "0x800ef094": "0x2a000"
+   },
+   "reason": "MAGIC/RENBAKU.BIN: effect table entry 155"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef098": "0xa32f",
+    "0x800ef09c": "0x3e000"
+   },
+   "reason": "MAGIC/YAMI.BIN: effect table entry 156"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0a0": "0xa3ab",
+    "0x800ef0a4": "0x3d800"
+   },
+   "reason": "MAGIC/REITO.BIN: effect table entry 157"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0a8": "0xa426",
+    "0x800ef0ac": "0x33800"
+   },
+   "reason": "MAGIC/KOUDAN1.BIN: effect table entry 158"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0b0": "0xa48d",
+    "0x800ef0b4": "0x34000"
+   },
+   "reason": "MAGIC/KOUDAN2.BIN: effect table entry 159"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0b8": "0xa4f5",
+    "0x800ef0bc": "0x40800"
+   },
+   "reason": "MAGIC/ROCKET.BIN: effect table entry 160"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0c0": "0xa576",
+    "0x800ef0c4": "0x3e000"
+   },
+   "reason": "MAGIC/NADARE.BIN: effect table entry 161"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0c8": "0xa5f2",
+    "0x800ef0cc": "0x21800"
+   },
+   "reason": "MAGIC/ELECBALL.BIN: effect table entry 162"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0d0": "0xa635",
+    "0x800ef0d4": "0x3b000"
+   },
+   "reason": "MAGIC/TAIL.BIN: effect table entry 163"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0d8": "0xa6ab",
+    "0x800ef0dc": "0x2a000"
+   },
+   "reason": "MAGIC/JIBASIRI.BIN: effect table entry 164"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0e0": "0xa6ff",
+    "0x800ef0e4": "0x2b800"
+   },
+   "reason": "MAGIC/SHOWER.BIN: effect table entry 165"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0e8": "0xa756",
+    "0x800ef0ec": "0x3c000"
+   },
+   "reason": "MAGIC/GAS.BIN: effect table entry 166"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0f0": "0xa7ce",
+    "0x800ef0f4": "0x3b000"
+   },
+   "reason": "MAGIC/HAKUGEK1.BIN: effect table entry 167"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef0f8": "0xa844",
+    "0x800ef0fc": "0x3b000"
+   },
+   "reason": "MAGIC/HAKUGEK2.BIN: effect table entry 168"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef100": "0xa8ba",
+    "0x800ef104": "0x39800"
+   },
+   "reason": "MAGIC/JAMMER.BIN: effect table entry 169"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef108": "0xa92d",
+    "0x800ef10c": "0x3d800"
+   },
+   "reason": "MAGIC/JAMMER2.BIN: effect table entry 170"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef110": "0xa9a8",
+    "0x800ef114": "0x33800"
+   },
+   "reason": "MAGIC/PINK.BIN: effect table entry 171"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef118": "0xaa0f",
+    "0x800ef11c": "0x32800"
+   },
+   "reason": "MAGIC/KONA.BIN: effect table entry 172"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef120": "0xaa74",
+    "0x800ef124": "0x41000"
+   },
+   "reason": "MAGIC/NAPALM.BIN: effect table entry 173"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef128": "0xaaf6",
+    "0x800ef12c": "0x36800"
+   },
+   "reason": "MAGIC/SEKIKA.BIN: effect table entry 174"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef130": "0xab63",
+    "0x800ef134": "0x3d000"
+   },
+   "reason": "MAGIC/RMISSILE.BIN: effect table entry 175"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef138": "0xabdd",
+    "0x800ef13c": "0x3c800"
+   },
+   "reason": "MAGIC/DAIONPA.BIN: effect table entry 176"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef140": "0xac56",
+    "0x800ef144": "0x33000"
+   },
+   "reason": "MAGIC/FROG.BIN: effect table entry 177"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef148": "0xacbc",
+    "0x800ef14c": "0x39800"
+   },
+   "reason": "MAGIC/KOROSI.BIN: effect table entry 178"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef150": "0xad2f",
+    "0x800ef154": "0x3d000"
+   },
+   "reason": "MAGIC/PHOENIX.BIN: effect table entry 179"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef158": "0xada9",
+    "0x800ef15c": "0x14800"
+   },
+   "reason": "MAGIC/VEGET.BIN: effect table entry 180"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef160": "0xadd2",
+    "0x800ef164": "0x3a000"
+   },
+   "reason": "MAGIC/MIZUFUKI.BIN: effect table entry 181"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef168": "0xae46",
+    "0x800ef16c": "0x2b800"
+   },
+   "reason": "MAGIC/GESUI.BIN: effect table entry 182"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef170": "0xae9d",
+    "0x800ef174": "0x37800"
+   },
+   "reason": "MAGIC/TBREATH.BIN: effect table entry 183"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef178": "0xaf0c",
+    "0x800ef17c": "0x3f000"
+   },
+   "reason": "MAGIC/HO_DEN.BIN: effect table entry 184"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef180": "0xaf8a",
+    "0x800ef184": "0x3e800"
+   },
+   "reason": "MAGIC/SAIKYO.BIN: effect table entry 185"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef188": "0xb007",
+    "0x800ef18c": "0x3a000"
+   },
+   "reason": "MAGIC/KAKUSAN.BIN: effect table entry 186"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef190": "0xb07b",
+    "0x800ef194": "0x3f800"
+   },
+   "reason": "MAGIC/ENERGY.BIN: effect table entry 187"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef198": "0xb0fa",
+    "0x800ef19c": "0x3f800"
+   },
+   "reason": "MAGIC/HADO.BIN: effect table entry 188"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1a0": "0xb179",
+    "0x800ef1a4": "0x36000"
+   },
+   "reason": "MAGIC/CHOCO0.BIN: effect table entry 189"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1a8": "0xb1e5",
+    "0x800ef1ac": "0x14800"
+   },
+   "reason": "MAGIC/DEBUCHO.BIN: effect table entry 190"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1b0": "0xb20e",
+    "0x800ef1b4": "0x3e800"
+   },
+   "reason": "MAGIC/ALEX.BIN: effect table entry 191"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1c0": "0xb2a6",
+    "0x800ef1c4": "0x40800"
+   },
+   "reason": "MAGIC/KUJATA.BIN: effect table entry 193"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1d0": "0xb33c",
+    "0x800ef1d4": "0x1b000"
+   },
+   "reason": "MAGIC/SPADE1.BIN: effect table entry 195"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1d8": "0xb372",
+    "0x800ef1dc": "0x1b800"
+   },
+   "reason": "MAGIC/SPADE2.BIN: effect table entry 196"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1e0": "0xb3a9",
+    "0x800ef1e4": "0x1b800"
+   },
+   "reason": "MAGIC/HEART1.BIN: effect table entry 197"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1e8": "0xb3e0",
+    "0x800ef1ec": "0x38000"
+   },
+   "reason": "MAGIC/HEART2.BIN: effect table entry 198"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1f0": "0xb450",
+    "0x800ef1f4": "0x35800"
+   },
+   "reason": "MAGIC/CLUB1.BIN: effect table entry 199"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef1f8": "0xb4bb",
+    "0x800ef1fc": "0x41000"
+   },
+   "reason": "MAGIC/CLUB2.BIN: effect table entry 200"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef200": "0xb53d",
+    "0x800ef204": "0x2f800"
+   },
+   "reason": "MAGIC/DIA1.BIN: effect table entry 201"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef208": "0xb59c",
+    "0x800ef20c": "0x36000"
+   },
+   "reason": "MAGIC/DIA2.BIN: effect table entry 202"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef210": "0xb608",
+    "0x800ef214": "0x20000"
+   },
+   "reason": "MAGIC/JOKER1.BIN: effect table entry 203"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef218": "0xb648",
+    "0x800ef21c": "0x28800"
+   },
+   "reason": "MAGIC/JOKER2.BIN: effect table entry 204"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef220": "0xb699",
+    "0x800ef224": "0x27000"
+   },
+   "reason": "MAGIC/SLDFANG.BIN: effect table entry 205"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef228": "0xb6e7",
+    "0x800ef22c": "0x45800"
+   },
+   "reason": "MAGIC/TIFA.BIN: effect table entry 206"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef238": "0xb77e",
+    "0x800ef23c": "0x19000"
+   },
+   "reason": "MAGIC/SHIELD.BIN: effect table entry 208"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef240": "0xb7b0",
+    "0x800ef244": "0x3d800"
+   },
+   "reason": "MAGIC/HADOHO.BIN: effect table entry 209"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef248": "0xb82b",
+    "0x800ef24c": "0x3d800"
+   },
+   "reason": "MAGIC/RE_DO.BIN: effect table entry 210"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef250": "0xb8a6",
+    "0x800ef254": "0x3d800"
+   },
+   "reason": "MAGIC/SHAKU.BIN: effect table entry 211"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef258": "0xb921",
+    "0x800ef25c": "0x3f800"
+   },
+   "reason": "MAGIC/CHO_KYU.BIN: effect table entry 212"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef260": "0xb9a0",
+    "0x800ef264": "0x3e000"
+   },
+   "reason": "MAGIC/TUPON.BIN: effect table entry 213"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef270": "0xba2a",
+    "0x800ef274": "0x15000"
+   },
+   "reason": "MAGIC/FULLCARE.BIN: effect table entry 215"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef278": "0xba54",
+    "0x800ef27c": "0xd000"
+   },
+   "reason": "MAGIC/ROLLFIRE.BIN: effect table entry 216"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef280": "0xba6e",
+    "0x800ef284": "0x23800"
+   },
+   "reason": "MAGIC/WPCU.BIN: effect table entry 217"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef288": "0xbab5",
+    "0x800ef28c": "0x23800"
+   },
+   "reason": "MAGIC/WPBA.BIN: effect table entry 218"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef290": "0xbafc",
+    "0x800ef294": "0x20000"
+   },
+   "reason": "MAGIC/WPEA.BIN: effect table entry 219"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef298": "0xbb3c",
+    "0x800ef29c": "0x23000"
+   },
+   "reason": "MAGIC/WPSI.BIN: effect table entry 220"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2a0": "0xbb82",
+    "0x800ef2a4": "0x24000"
+   },
+   "reason": "MAGIC/WPYU.BIN: effect table entry 221"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2a8": "0xbbca",
+    "0x800ef2ac": "0x1d000"
+   },
+   "reason": "MAGIC/WPKE.BIN: effect table entry 222"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2b0": "0xbc04",
+    "0x800ef2b4": "0x21000"
+   },
+   "reason": "MAGIC/WPBI.BIN: effect table entry 223"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2b8": "0xbc46",
+    "0x800ef2bc": "0x2a000"
+   },
+   "reason": "MAGIC/TOYBOX.BIN: effect table entry 224"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2c0": "0xbc9a",
+    "0x800ef2c4": "0x33800"
+   },
+   "reason": "MAGIC/HMOON.BIN: effect table entry 225"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2c8": "0xbd01",
+    "0x800ef2cc": "0x34800"
+   },
+   "reason": "MAGIC/SDUST.BIN: effect table entry 226"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2d0": "0xbd6a",
+    "0x800ef2d4": "0x38800"
+   },
+   "reason": "MAGIC/LUNATIC.BIN: effect table entry 227"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2d8": "0xbddb",
+    "0x800ef2dc": "0x3c800"
+   },
+   "reason": "MAGIC/ERAVE.BIN: effect table entry 228"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2e0": "0xbe54",
+    "0x800ef2e4": "0x45000"
+   },
+   "reason": "MAGIC/COSMO.BIN: effect table entry 229"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2e8": "0xbede",
+    "0x800ef2ec": "0x1e800"
+   },
+   "reason": "MAGIC/MDANCE.BIN: effect table entry 230"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2f0": "0xbf1b",
+    "0x800ef2f4": "0x1e000"
+   },
+   "reason": "MAGIC/TSOL.BIN: effect table entry 231"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef2f8": "0xbf57",
+    "0x800ef2fc": "0x39000"
+   },
+   "reason": "MAGIC/LGIRL.BIN: effect table entry 232"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef300": "0xbfc9",
+    "0x800ef304": "0x40000"
+   },
+   "reason": "MAGIC/MRAIN.BIN: effect table entry 233"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef308": "0xc049",
+    "0x800ef30c": "0x2f000"
+   },
+   "reason": "MAGIC/GARYU.BIN: effect table entry 234"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef310": "0xc0a7",
+    "0x800ef314": "0x48000"
+   },
+   "reason": "MAGIC/HADES.BIN: effect table entry 235"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef318": "0xc137",
+    "0x800ef31c": "0x2d000"
+   },
+   "reason": "MAGIC/DYNAMITE.BIN: effect table entry 236"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef320": "0xc191",
+    "0x800ef324": "0x2d800"
+   },
+   "reason": "MAGIC/MEIKYO.BIN: effect table entry 237"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef328": "0xc1ec",
+    "0x800ef32c": "0x3c800"
+   },
+   "reason": "MAGIC/HIWIND.BIN: effect table entry 238"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef330": "0xc265",
+    "0x800ef334": "0x1d000"
+   },
+   "reason": "MAGIC/SHINRA.BIN: effect table entry 239"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef338": "0xc29f",
+    "0x800ef33c": "0xa800"
+   },
+   "reason": "MAGIC/BOOST.BIN: effect table entry 240"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef340": "0xc2b4",
+    "0x800ef344": "0x22800"
+   },
+   "reason": "MAGIC/MOD.BIN: effect table entry 241"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef348": "0xc2f9",
+    "0x800ef34c": "0x3d800"
+   },
+   "reason": "MAGIC/HYPER.BIN: effect table entry 242"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef350": "0xc374",
+    "0x800ef354": "0x1d000"
+   },
+   "reason": "MAGIC/DIVE.BIN: effect table entry 243"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef358": "0xc3ae",
+    "0x800ef35c": "0x19800"
+   },
+   "reason": "MAGIC/RANTO.BIN: effect table entry 244"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef360": "0xc3e1",
+    "0x800ef364": "0x5800"
+   },
+   "reason": "MAGIC/JINRAI.BIN: effect table entry 245"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef368": "0xc3ec",
+    "0x800ef36c": "0x18800"
+   },
+   "reason": "MAGIC/CHI.BIN: effect table entry 246"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef370": "0xc41d",
+    "0x800ef374": "0x1b800"
+   },
+   "reason": "MAGIC/GAISHU.BIN: effect table entry 247"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef378": "0xc454",
+    "0x800ef37c": "0x27800"
+   },
+   "reason": "MAGIC/SEIJA.BIN: effect table entry 248"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef380": "0xc4a3",
+    "0x800ef384": "0x6000"
+   },
+   "reason": "MAGIC/M_BREAK.BIN: effect table entry 249"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef388": "0xc4af",
+    "0x800ef38c": "0xd800"
+   },
+   "reason": "MAGIC/BEAT.BIN: effect table entry 250"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef390": "0xc4ca",
+    "0x800ef394": "0x2b800"
+   },
+   "reason": "MAGIC/BEAST.BIN: effect table entry 251"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef398": "0xc521",
+    "0x800ef39c": "0x42000"
+   },
+   "reason": "MAGIC/ODIN2.BIN: effect table entry 252"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3a0": "0xc5a5",
+    "0x800ef3a4": "0x43000"
+   },
+   "reason": "MAGIC/ODIN1.BIN: effect table entry 253"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3a8": "0xc62b",
+    "0x800ef3ac": "0x1e800"
+   },
+   "reason": "MAGIC/DISE.BIN: effect table entry 254"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3b0": "0xc668",
+    "0x800ef3b4": "0x3f800"
+   },
+   "reason": "MAGIC/BRIZAG2.BIN: effect table entry 255"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3c0": "0xc710",
+    "0x800ef3c4": "0x3f800"
+   },
+   "reason": "MAGIC/VAHAMUT.BIN: effect table entry 257"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3d0": "0xc7ab",
+    "0x800ef3d4": "0x7000"
+   },
+   "reason": "MAGIC/BRAND.BIN: effect table entry 259"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3d8": "0xc7b9",
+    "0x800ef3dc": "0x27800"
+   },
+   "reason": "MAGIC/GAISEI.BIN: effect table entry 260"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3e0": "0xc808",
+    "0x800ef3e4": "0x800"
+   },
+   "reason": "MAGIC/GATTAI.BIN: effect table entry 261"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef3e8": "0xc809",
+    "0x800ef3ec": "0x3f800"
+   },
+   "reason": "MAGIC/VAHAMUT2.BIN: effect table entry 262"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef400": "0xc8b6",
+    "0x800ef404": "0x4d800"
+   },
+   "reason": "MAGIC/VAHAMUT0.BIN: effect table entry 265"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef430": "0xc9df",
+    "0x800ef434": "0x3d800"
+   },
+   "reason": "MAGIC/KNIGHTS.BIN: effect table entry 271"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4b0": "0xcb80",
+    "0x800ef4b4": "0x31000"
+   },
+   "reason": "MAGIC/GOSPEL.BIN: effect table entry 287"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4b8": "0xcbe2",
+    "0x800ef4bc": "0x2800"
+   },
+   "reason": "MAGIC/JAKI.BIN: effect table entry 288"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4c0": "0xcbe7",
+    "0x800ef4c4": "0x25000"
+   },
+   "reason": "MAGIC/GRENADE.BIN: effect table entry 289"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4c8": "0xcc31",
+    "0x800ef4cc": "0x15800"
+   },
+   "reason": "MAGIC/S_BEAM.BIN: effect table entry 290"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4d0": "0xcc5c",
+    "0x800ef4d4": "0x6000"
+   },
+   "reason": "MAGIC/HAKOU.BIN: effect table entry 291"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4d8": "0xcc68",
+    "0x800ef4dc": "0x45000"
+   },
+   "reason": "MAGIC/BUSHIN2.BIN: effect table entry 292"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4e0": "0xccf2",
+    "0x800ef4e4": "0x36000"
+   },
+   "reason": "MAGIC/LASBOSS2.BIN: effect table entry 293"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4f0": "0xcd6f",
+    "0x800ef4f4": "0x18800"
+   },
+   "reason": "MAGIC/CATASTRO.BIN: effect table entry 295"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef4f8": "0xcda0",
+    "0x800ef4fc": "0x13800"
+   },
+   "reason": "MAGIC/H_BLOW.BIN: effect table entry 296"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef500": "0xcdc7",
+    "0x800ef504": "0x6800"
+   },
+   "reason": "MAGIC/CLIMB.BIN: effect table entry 297"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef508": "0xcdd4",
+    "0x800ef50c": "0xe000"
+   },
+   "reason": "MAGIC/ANGERMAX.BIN: effect table entry 298"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef510": "0xcdf0",
+    "0x800ef514": "0x7000"
+   },
+   "reason": "MAGIC/ECHOES.BIN: effect table entry 299"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef518": "0xcdfe",
+    "0x800ef51c": "0x6800"
+   },
+   "reason": "MAGIC/SMKBALL.BIN: effect table entry 300"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef520": "0xce64",
+    "0x800ef524": "0x34000"
+   },
+   "reason": "MAGIC/SPARK.BIN: effect table entry 301"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef528": "0xce0b",
+    "0x800ef52c": "0x2c800"
+   },
+   "reason": "MAGIC/NIGHT.BIN: effect table entry 302"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef530": "0xcecc",
+    "0x800ef534": "0x38000"
+   },
+   "reason": "MAGIC/SATAN.BIN: effect table entry 303"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef538": "0xcf3c",
+    "0x800ef53c": "0x19800"
+   },
+   "reason": "MAGIC/PUNCH.BIN: effect table entry 304"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef540": "0xcf6f",
+    "0x800ef544": "0x7800"
+   },
+   "reason": "MAGIC/DAICHI.BIN: effect table entry 305"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef548": "0xcf7e",
+    "0x800ef54c": "0x3800"
+   },
+   "reason": "MAGIC/S_GUARD.BIN: effect table entry 306"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef550": "0xcf85",
+    "0x800ef554": "0x37000"
+   },
+   "reason": "MAGIC/LASBOSS.BIN: effect table entry 307"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef558": "0xcff3",
+    "0x800ef55c": "0x1800"
+   },
+   "reason": "MAGIC/WALL.BIN: effect table entry 308"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef560": "0xcff6",
+    "0x800ef564": "0x11800"
+   },
+   "reason": "MAGIC/MAGEND.BIN: effect table entry 309"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef568": "0xd019",
+    "0x800ef56c": "0x12000"
+   },
+   "reason": "MAGIC/TO_SEKI.BIN: effect table entry 310"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef570": "0xd03d",
+    "0x800ef574": "0x4800"
+   },
+   "reason": "MAGIC/DEADSEF.BIN: effect table entry 311"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef578": "0xd046",
+    "0x800ef57c": "0x34800"
+   },
+   "reason": "MAGIC/ANTLION.BIN: effect table entry 312"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef580": "0xd0af",
+    "0x800ef584": "0x1d000"
+   },
+   "reason": "MAGIC/STING.BIN: effect table entry 313"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef588": "0xd0e9",
+    "0x800ef58c": "0x3c000"
+   },
+   "reason": "MAGIC/WEP3.BIN: effect table entry 314"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef590": "0xd161",
+    "0x800ef594": "0x30000"
+   },
+   "reason": "MAGIC/BEAM.BIN: effect table entry 315"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef598": "0xd1c1",
+    "0x800ef59c": "0x3f800"
+   },
+   "reason": "MAGIC/WEP4.BIN: effect table entry 316"
+  },
+  {
+   "method": "words",
+   "file": "PREPARED/BATTLE/BATTLE.X",
+   "base": "0x800A0000",
+   "values": {
+    "0x800ef5a0": "0xd240",
+    "0x800ef5a4": "0x3f000"
+   },
+   "reason": "MAGIC/DIA.BIN: effect table entry 317"
+  }
+ ],
+ "images": [
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/FIELD/FIELD.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a16cc",
+    "0x800cf60c"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/WORLD/WORLD.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a460c"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/CONDOR.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800b6b58"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/SNOBO.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a0390"
+   ],
+   "excluded_ranges": [
+    {
+     "start": "0x800bfd74",
+     "end": "0x800dd690",
+     "sha256": "aa77d53922342ede7e745b82d620aae37eb90408ae57715e0c98e2ed61646437",
+     "reason": "Data after the last function (its final jr $ra + delay slot ends .text); a word there decodes as a stack-frame prologue"
+    }
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/SNOBO2.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a0448"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "FIELD/DSCHANGE.X"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a0000",
+    "0x800a0c58"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "FIELD/ENDING.X"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a0030",
+    "0x800a04c4"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/CHOCOBO.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a02d0"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/JET.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a0450"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/SUBMAR.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a00bc"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/MINI/HIGHWAY.BIN"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a00d0"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/BGINMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d027c",
+    "0x801d05c4",
+    "0x801d0704"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/CHNGMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/CNFGMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/EQIPMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/FORMMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d1a6c"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/ITEMMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d2d74",
+    "0x801d2e84",
+    "0x801d2f00",
+    "0x801d3018",
+    "0x801d3138",
+    "0x801d3228"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/LIMTMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d11a8"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/MGICMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/NAMEMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d131c"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/PATYMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/SAVEMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d1774",
+    "0x801d4cc0"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/SHOPMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801d4118"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MENU/STATMENU.MNU"
+   ],
+   "load_addr": "0x801D0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/BATTLE/BROM.X"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a00cc"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/BATTLE/BATTLE.X"
+   ],
+   "load_addr": "0x800A0000",
+   "allow_missing": true,
+   "entries": [
+    "0x800a1158"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/BATTLE/BATINI.X"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801b0050",
+    "0x801b0490"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "PREPARED/BATTLE/BATRES.X"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [
+    "0x801b0000"
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CAREL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FIRE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FAIRA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/THUNDER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/THUNDERA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/THUNDG1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/THUNDG2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BRIZAD.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BRIZARA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GRAVIDE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SLOW.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BARRIER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MABARIA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/REFREC.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BERSERK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [],
+   "excluded_ranges": [
+    {
+     "start": "0x801b0858",
+     "end": "0x801d1334",
+     "sha256": "fd0b39d037c43287e999431ece09e6c3dd8a14274dc441daefe75b3cd11cad47",
+     "reason": "Data after the last function (its final jr $ra + delay slot ends .text); a word there decodes as a stack-frame prologue"
+    }
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RIVA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/THREAT.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/IYASHI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BLAVER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KYOGIRI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HVSHOT.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LASER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DEJON.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TORNADO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GRAVIRA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GRAVIGA1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GRAVIGA2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/COMET.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BIO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BIORA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/COMETEO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BIOGA1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BIOGA2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BREAK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ESCAPE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ESNA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RESIST.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/W_WIND.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ELEVATOR.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TITAN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LAMU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [],
+   "excluded_ranges": [
+    {
+     "start": "0x801b3a9c",
+     "end": "0x801e7dc0",
+     "sha256": "6b9f76ab730398fff1620d5fb96961a1c46ac69ee46b36e27a31f3b36c66ae9e",
+     "reason": "Data after the last function (its final jr $ra + delay slot ends .text); a word there decodes as a stack-frame prologue"
+    }
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/IFLEET.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SIVA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FREEZE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FLAME.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ALMIGHTY.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WHIRL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TEARS.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TIMEDMG.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SLIPL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HEIST.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/QUEIR.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/QUEIG.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/QUEIK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SAILESS.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/STOP.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FLEA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FAIGA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BRIZAG.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BEATA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ALTEMA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DEBARIA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SFLEA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DETHPER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MINIMAM.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TODO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TRAINN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MAGIKAL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/AQUA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GOBLINP.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HATENA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KUSAI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HANMMER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DRAGONN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAERU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DETHFO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LV5DETH.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FAIGA2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/REAZER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MATRA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LV4JIBAK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MYTYG.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NANNTOKA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SENNKOKU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RAISE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DEATH.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CONF.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ONPA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BACUME.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SEARCH.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HARI1000.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SEED.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MGBEAM.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TAN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KIEN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KONOHA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SUNA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ITO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HIKARI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LASER2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/YU_WAKU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BLASTER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MISSILE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAMA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/Q_KETSU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SUMI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAMA2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JIBAKU1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/Q_SHU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/OSEN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TRIANGLE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MIZU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HARRIER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RAKUSEKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CBREATH.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ATOMIC.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NONOSHI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/OIL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DOKUFUKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DOKUEKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FUBUKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/QUASAR.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SOUTHERN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NORTHERN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SCOPE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TOBOE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAFUN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/OTSUNAMI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SMOG2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KINZAN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CHIKASUI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/AWA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/THUNDER2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ONSEN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MAGMA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NETSU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GEKI1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GEKI2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/AEROGA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HAKAI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WLASER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TSURARA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JIBAKU2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAEN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAEN2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/REIKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HIKARI2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HIKARI3.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MAGMA2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SEALD.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HEATBU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/AYASII.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DAISENP.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/UTAGOE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ZENBAKU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RENBAKU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/YAMI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/REITO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KOUDAN1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KOUDAN2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ROCKET.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NADARE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ELECBALL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TAIL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JIBASIRI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SHOWER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GAS.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HAKUGEK1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HAKUGEK2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JAMMER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JAMMER2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/PINK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KONA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NAPALM.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SEKIKA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RMISSILE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DAIONPA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FROG.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KOROSI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/PHOENIX.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [],
+   "excluded_ranges": [
+    {
+     "start": "0x801b48fc",
+     "end": "0x801ec880",
+     "sha256": "8ed2a67dbf4a8048aea74c61bb7bd10d82d2ae98bf228853d34d3dc43b098bd6",
+     "reason": "Data after the last function (its final jr $ra + delay slot ends .text); a word there decodes as a stack-frame prologue"
+    }
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/VEGET.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MIZUFUKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GESUI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TBREATH.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HO_DEN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SAIKYO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KAKUSAN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ENERGY.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HADO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CHOCO0.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DEBUCHO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ALEX.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KUJATA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SPADE1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SPADE2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HEART1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HEART2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CLUB1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CLUB2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DIA1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DIA2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JOKER1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JOKER2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SLDFANG.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TIFA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SHIELD.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HADOHO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RE_DO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SHAKU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CHO_KYU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TUPON.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/FULLCARE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ROLLFIRE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPCU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPBA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPEA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPSI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPYU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPKE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WPBI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TOYBOX.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HMOON.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SDUST.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LUNATIC.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ERAVE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/COSMO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MDANCE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TSOL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LGIRL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MRAIN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GARYU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HADES.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DYNAMITE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MEIKYO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HIWIND.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SHINRA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BOOST.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MOD.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HYPER.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DIVE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/RANTO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JINRAI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CHI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GAISHU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SEIJA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/M_BREAK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BEAT.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BEAST.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ODIN2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ODIN1.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DISE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BRIZAG2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/VAHAMUT.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BRAND.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GAISEI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GATTAI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/VAHAMUT2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/VAHAMUT0.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/KNIGHTS.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GOSPEL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/JAKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/GRENADE.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/S_BEAM.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [],
+   "excluded_ranges": [
+    {
+     "start": "0x801b2308",
+     "end": "0x801c5630",
+     "sha256": "19cdfc3a6e04d5123c3c7471d2961239e8048e1f3a5b9ffb184e4894acbc16f8",
+     "reason": "Data after the last function (its final jr $ra + delay slot ends .text); a word there decodes as a stack-frame prologue"
+    }
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/HAKOU.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BUSHIN2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LASBOSS2.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CATASTRO.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/H_BLOW.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/CLIMB.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ANGERMAX.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ECHOES.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SMKBALL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SPARK.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": [],
+   "excluded_ranges": [
+    {
+     "start": "0x801b228c",
+     "end": "0x801e3a6c",
+     "sha256": "1bc1d9e94cd19cf8c6dc02f6dac107dc8438cfbcbb073c9b8012b76f093dbc94",
+     "reason": "Data after the last function (its final jr $ra + delay slot ends .text); a word there decodes as a stack-frame prologue"
+    }
+   ]
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/NIGHT.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/SATAN.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/PUNCH.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DAICHI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/S_GUARD.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/LASBOSS.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WALL.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/MAGEND.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/TO_SEKI.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DEADSEF.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/ANTLION.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/STING.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WEP3.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/BEAM.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/WEP4.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  },
+  {
+   "method": "fixed_address_files",
+   "files": [
+    "MAGIC/DIA.BIN"
+   ],
+   "load_addr": "0x801B0000",
+   "allow_missing": true,
+   "entries": []
+  }
+ ],
+ "expected_records": 317
+}

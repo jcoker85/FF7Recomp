@@ -51,9 +51,14 @@ psxrecomp_add_game_runtime(psx-runtime
     MAX_PLAYERS 2
     # LAUNCHER_BOXART "${CMAKE_CURRENT_SOURCE_DIR}/launcher_assets/img/boxart.tga"
     APP_ICON "${CMAKE_CURRENT_SOURCE_DIR}/assets/psxrecomp.ico"
+    # Native overlays built ahead of time from your own disc by Generate
+    # (aot/overlays.json declares this file as its static_output).
+    GAME_OVERLAY_STATIC_C "${CMAKE_CURRENT_SOURCE_DIR}/generated/overlays_static.c"
     # Game C generated from your own disc (tools/generate.sh); not committed.
     GEN_MARKER "generated/SCUS_941.63_dispatch.c"
     GEN_FULL_GLOB "generated/SCUS_941.63_full_*.c"
+    # Keep the list arguments (GEN_FULL_GLOB, CODEGEN_SETUP_SOURCES) last:
+    # each takes every value after it.
     CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
 )
 
@@ -69,6 +74,13 @@ foreach(_PSX_RUNTIME_CONFIG game.toml game_options.toml)
                 "${CMAKE_CURRENT_BINARY_DIR}/${_PSX_RUNTIME_CONFIG}")
     endif()
 endforeach()
+# Disc 3's native overlay cache (tools/generate.sh with a Disc 3 image).
+if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/generated/disc3/cache")
+    list(APPEND _PSX_STAGE_CONFIG_COMMANDS
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/generated/disc3/cache"
+            "${CMAKE_CURRENT_BINARY_DIR}/cache")
+endif()
 add_custom_target(stage-runtime-config ${_PSX_STAGE_CONFIG_COMMANDS}
     COMMENT "Staging game.toml" VERBATIM)
 add_dependencies(psx-runtime stage-runtime-config)
