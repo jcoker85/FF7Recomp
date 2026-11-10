@@ -1,11 +1,299 @@
-# Final Fantasy VII — progressive symbol map (partial decomp)
+# Final Fantasy VII (USA, SCUS-94163) — progressive symbol map (partial decomp)
 # Discover → label here → manipulate via PSX_FN_* (tools/sync_symbols.py).
 # Gate emit=true only when the entry is safe to own for AOT / host hooks.
 # See psxrecomp/docs/SYMBOLS.md.
+#
+# status: "confirmed" = behaviour read from the code and checked against the
+# disc or a running game; "guessed" = named from how callers use it.
+#
+# Overlay addresses (0x800A0000-, 0x801B0000-, 0x801D0000-) name code in one
+# module only; several modules load at each of those addresses, so a PSX_FN_
+# for one is valid only while that module is resident.
+#
+# Data the functions below use (not emitted; the sync tool takes functions):
+#   0x80048D24  module table {u32 lba, u32 size}: 0 FIELD.BIN, 1 WORLD.BIN,
+#               2 CONDOR, 3 SNOBO, 4 SNOBO2, 5 DSCHANGE.X, 6 ENDING.X,
+#               7 CHOCOBO, 8 JET, 9 SUBMAR, 10 HIGHWAY
+#   0x80048D84  battle file table {u32 lba, u32 size}, copied from
+#               INIT/YAMADA.BIN at boot: 0 YAMADA, 1 WINDOW.BIN, 2 KERNEL.BIN,
+#               3 BROM.X, 4 TITLE.BIN, 5 BATTLE.X, 6 BATINI.X, 7 SCENE.BIN,
+#               8 BATRES.X, 9 CO.BIN
+#   0x80048F60  menu table {u32 lba, u32 size}, indexed 1-16 (*.MNU files)
+#   0x80062D44  $gp; 0x80062DEC (gp+168) is the menu load address, 0x801D0000
+#   0x8009C560  u16 module id the main loop switches on (minus 1, jump table
+#               0x80010028): 1 field, 2/4 battle, 3 world map, 6 highway,
+#               7 chocobo, 8 snowboard, 9 Fort Condor, 10 submarine, 11 jet,
+#               12 disc change, 14 snowboard (Gold Saucer). Can hold the last
+#               module after it returns.
+#   0x800EEBB8  (BATTLE.X) effect table {u32 lba, u32 sector-rounded size},
+#               318 MAGIC/ entries, then SNOVA/LASBOSS3.BIN (Disc 3)
+
+# ---- boot program: main loop and module loaders -----------------------------
 
 [[func]]
 pc = 0x800110C0
 name = "BootEntry"
 emit = false
+status = "confirmed"
+note = "EXE entry point (PS-X EXE header pc0)"
+
+[[func]]
+pc = 0x80011C1C
+name = "MainLoop"
+emit = false
 status = "guessed"
-note = "EXE entry point"
+note = "Top-level loop: dispatches on the module id at 0x8009C560 and loads/starts field, world, battle and minigames"
+
+[[func]]
+pc = 0x800112E8
+name = "WorldMap_LoadAndRun"
+emit = false
+status = "confirmed"
+note = "Module 3: reads WORLD/WORLD.BIN (module table 1) to 0x80180000, gunzips it to 0x800A0000, calls 0x800A460C"
+
+[[func]]
+pc = 0x80011860
+name = "Field_LoadAndRun"
+emit = false
+status = "confirmed"
+note = "Module 1: reads FIELD/FIELD.BIN (module table 0; or the copy cached at 0x801C0000), gunzips it to 0x800A0000, calls 0x800CF60C then 0x800A16CC"
+
+[[func]]
+pc = 0x80011938
+name = "Sound_LoadBanks"
+emit = false
+status = "guessed"
+note = "Reads SOUND/INSTR.ALL to 0x800F0000 and EFFECT.ALL/INSTR.DAT to 0x801B0000 (table 0x80048CFC)"
+
+[[func]]
+pc = 0x80015CA0
+name = "Module_Gunzip"
+emit = false
+status = "confirmed"
+note = "a0 = packed module {u32 size, u32 zero-fill size, gzip member}, a1 = destination; inflates, then zero-fills the tail"
+
+[[func]]
+pc = 0x80014610
+name = "Battle_LoadFileTable"
+emit = false
+status = "confirmed"
+note = "Reads INIT/YAMADA.BIN (LBA 0x266) and copies its 0x50 bytes over the battle file table at 0x80048D84"
+
+[[func]]
+pc = 0x80014578
+name = "BattleFile_Read"
+emit = false
+status = "confirmed"
+note = "a0 = battle file table index, a1 = destination, a2 = completion callback; starts the CD read"
+
+[[func]]
+pc = 0x800145BC
+name = "Cd_WaitWithCallback"
+emit = false
+status = "guessed"
+note = "Polls the CD read until done, calling a0 (if set) while it waits"
+
+[[func]]
+pc = 0x80014658
+name = "BattleModule_LoadAndRun"
+emit = false
+status = "confirmed"
+note = "a0 = battle file index, a1 = entry: reads it to 0x801B0000, gunzips to 0x800A0000, jumps to a1 (BROM.X index 3 -> 0x800A00CC, BATTLE.X index 5 -> 0x800A1158)"
+
+[[func]]
+pc = 0x800146A4
+name = "Battle_Enter"
+emit = false
+status = "confirmed"
+note = "Module ids 2 and 4: starts BATTLE.X (2) or BROM.X (4) through BattleModule_LoadAndRun"
+
+[[func]]
+pc = 0x80014934
+name = "Kernel_LoadData"
+emit = false
+status = "guessed"
+note = "Reads INIT/KERNEL.BIN (battle file 2) to 0x801B0000 and unpacks its archive to 0x800AC738"
+
+[[func]]
+pc = 0x80014A00
+name = "CopyWords"
+emit = false
+status = "confirmed"
+note = "memcpy by words: a0 = dest, a1 = src, a2 = byte count"
+
+[[func]]
+pc = 0x800211B8
+name = "Menu_SetLoadAddress"
+emit = false
+status = "confirmed"
+note = "Stores a0 at gp+168 (0x80062DEC), the address Menu_Load reads into; initialised to 0x801D0000"
+
+[[func]]
+pc = 0x800211C4
+name = "Menu_Load"
+emit = false
+status = "confirmed"
+note = "a0 = menu table index (0x80048F60): reads that MENU/*.MNU to the menu load address and waits"
+
+[[func]]
+pc = 0x80033E34
+name = "Cd_ReadSectors"
+emit = false
+status = "guessed"
+note = "a0 = LBA, a1 = byte size, a2 = destination, a3 = callback; asynchronous (callers poll Cd_ReadBusy)"
+
+[[func]]
+pc = 0x80033F40
+name = "Cd_ReadSectorsWait"
+emit = false
+status = "guessed"
+note = "Same arguments as Cd_ReadSectors; used for raw modules (DSCHANGE.X, ENDING.X) read straight to 0x800A0000"
+
+[[func]]
+pc = 0x80034B44
+name = "Cd_ReadBusy"
+emit = false
+status = "guessed"
+note = "Nonzero while a CD read is still in progress; callers spin on it"
+
+[[func]]
+pc = 0x800343F0
+name = "Cd_CurrentDisc"
+emit = false
+status = "guessed"
+note = "Compared with the disc number the game expects before loading DSCHANGE.X"
+
+# ---- overlay entry points the loaders call -----------------------------------
+
+[[func]]
+pc = 0x800A16CC
+name = "Field_Main"
+emit = false
+status = "confirmed"
+note = "FIELD.BIN (resident at 0x800A0000): called by Field_LoadAndRun"
+
+[[func]]
+pc = 0x800CF60C
+name = "Field_Init"
+emit = false
+status = "guessed"
+note = "FIELD.BIN: called right after it is unpacked, before Field_Main"
+
+[[func]]
+pc = 0x800A460C
+name = "WorldMap_Main"
+emit = false
+status = "confirmed"
+note = "WORLD.BIN: called by WorldMap_LoadAndRun"
+
+[[func]]
+pc = 0x800A1158
+name = "Battle_Main"
+emit = false
+status = "confirmed"
+note = "BATTLE.X: entry BattleModule_LoadAndRun jumps to; widescreen keys on its first instruction"
+
+[[func]]
+pc = 0x800D088C
+name = "BattleEffect_Read"
+emit = false
+status = "confirmed"
+note = "BATTLE.X: reads a battle effect (effect table 0x800EEBB8) raw to 0x801B0000"
+
+[[func]]
+pc = 0x800A00CC
+name = "BattleStart_Main"
+emit = false
+status = "confirmed"
+note = "BROM.X: entry for module id 4"
+
+[[func]]
+pc = 0x800A02D0
+name = "Chocobo_Main"
+emit = false
+status = "confirmed"
+note = "MINI/CHOCOBO.BIN (Chocobo racing)"
+
+[[func]]
+pc = 0x800A0390
+name = "Snowboard_Main"
+emit = false
+status = "confirmed"
+note = "MINI/SNOBO.BIN"
+
+[[func]]
+pc = 0x800A0448
+name = "Snowboard2_Main"
+emit = false
+status = "confirmed"
+note = "MINI/SNOBO2.BIN (Gold Saucer version)"
+
+[[func]]
+pc = 0x800B6B58
+name = "FortCondor_Main"
+emit = false
+status = "confirmed"
+note = "MINI/CONDOR.BIN"
+
+[[func]]
+pc = 0x800A00BC
+name = "Submarine_Main"
+emit = false
+status = "confirmed"
+note = "MINI/SUBMAR.BIN"
+
+[[func]]
+pc = 0x800A0450
+name = "Jet_Main"
+emit = false
+status = "confirmed"
+note = "MINI/JET.BIN"
+
+[[func]]
+pc = 0x800A00D0
+name = "Highway_Main"
+emit = false
+status = "confirmed"
+note = "MINI/HIGHWAY.BIN (motorcycle chase)"
+
+[[func]]
+pc = 0x800A0000
+name = "DiscChange_Main"
+emit = false
+status = "confirmed"
+note = "FIELD/DSCHANGE.X, read raw to 0x800A0000; also enters at 0x800A0C58"
+
+[[func]]
+pc = 0x800A0030
+name = "Ending_Main"
+emit = false
+status = "confirmed"
+note = "FIELD/ENDING.X, read raw to 0x800A0000; also enters at 0x800A04C4"
+
+[[func]]
+pc = 0x801D2D74
+name = "ItemMenu_Main"
+emit = false
+status = "confirmed"
+note = "MENU/ITEMMENU.MNU (menu index 1); five more entries at 0x801D2E84-0x801D3228"
+
+[[func]]
+pc = 0x801D1774
+name = "SaveMenu_Main"
+emit = false
+status = "confirmed"
+note = "MENU/SAVEMENU.MNU (menu index 10); index 16 enters at 0x801D4CC0"
+
+[[func]]
+pc = 0x801D131C
+name = "NameMenu_Main"
+emit = false
+status = "confirmed"
+note = "MENU/NAMEMENU.MNU (menu index 13)"
+
+[[func]]
+pc = 0x801D4118
+name = "ShopMenu_Main"
+emit = false
+status = "confirmed"
+note = "MENU/SHOPMENU.MNU (menu index 15)"

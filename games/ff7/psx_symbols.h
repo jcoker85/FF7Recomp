@@ -4,6 +4,154 @@
  */
 #pragma once
 
-/* guessed: EXE entry point */
+/* confirmed: EXE entry point (PS-X EXE header pc0) */
 #define PSX_FN_BootEntry 0x800110C0u
 #define func_800110C0 BootEntry  /* alias */
+
+/* confirmed: Module 3: reads WORLD/WORLD.BIN (module table 1) to 0x80180000, gunzips it to 0x800A0000, calls 0x800A460C */
+#define PSX_FN_WorldMap_LoadAndRun 0x800112E8u
+#define func_800112E8 WorldMap_LoadAndRun  /* alias */
+
+/* confirmed: Module 1: reads FIELD/FIELD.BIN (module table 0; or the copy cached at 0x801C0000), gunzips it to 0x800A0000, calls 0x800CF60C then 0x800A16CC */
+#define PSX_FN_Field_LoadAndRun 0x80011860u
+#define func_80011860 Field_LoadAndRun  /* alias */
+
+/* guessed: Reads SOUND/INSTR.ALL to 0x800F0000 and EFFECT.ALL/INSTR.DAT to 0x801B0000 (table 0x80048CFC) */
+#define PSX_FN_Sound_LoadBanks 0x80011938u
+#define func_80011938 Sound_LoadBanks  /* alias */
+
+/* guessed: Top-level loop: dispatches on the module id at 0x8009C560 and loads/starts field, world, battle and minigames */
+#define PSX_FN_MainLoop 0x80011C1Cu
+#define func_80011C1C MainLoop  /* alias */
+
+/* confirmed: a0 = battle file table index, a1 = destination, a2 = completion callback; starts the CD read */
+#define PSX_FN_BattleFile_Read 0x80014578u
+#define func_80014578 BattleFile_Read  /* alias */
+
+/* guessed: Polls the CD read until done, calling a0 (if set) while it waits */
+#define PSX_FN_Cd_WaitWithCallback 0x800145BCu
+#define func_800145BC Cd_WaitWithCallback  /* alias */
+
+/* confirmed: Reads INIT/YAMADA.BIN (LBA 0x266) and copies its 0x50 bytes over the battle file table at 0x80048D84 */
+#define PSX_FN_Battle_LoadFileTable 0x80014610u
+#define func_80014610 Battle_LoadFileTable  /* alias */
+
+/* confirmed: a0 = battle file index, a1 = entry: reads it to 0x801B0000, gunzips to 0x800A0000, jumps to a1 (BROM.X index 3 -> 0x800A00CC, BATTLE.X index 5 -> 0x800A1158) */
+#define PSX_FN_BattleModule_LoadAndRun 0x80014658u
+#define func_80014658 BattleModule_LoadAndRun  /* alias */
+
+/* confirmed: Module ids 2 and 4: starts BATTLE.X (2) or BROM.X (4) through BattleModule_LoadAndRun */
+#define PSX_FN_Battle_Enter 0x800146A4u
+#define func_800146A4 Battle_Enter  /* alias */
+
+/* guessed: Reads INIT/KERNEL.BIN (battle file 2) to 0x801B0000 and unpacks its archive to 0x800AC738 */
+#define PSX_FN_Kernel_LoadData 0x80014934u
+#define func_80014934 Kernel_LoadData  /* alias */
+
+/* confirmed: memcpy by words: a0 = dest, a1 = src, a2 = byte count */
+#define PSX_FN_CopyWords 0x80014A00u
+#define func_80014A00 CopyWords  /* alias */
+
+/* confirmed: a0 = packed module {u32 size, u32 zero-fill size, gzip member}, a1 = destination; inflates, then zero-fills the tail */
+#define PSX_FN_Module_Gunzip 0x80015CA0u
+#define func_80015CA0 Module_Gunzip  /* alias */
+
+/* confirmed: Stores a0 at gp+168 (0x80062DEC), the address Menu_Load reads into; initialised to 0x801D0000 */
+#define PSX_FN_Menu_SetLoadAddress 0x800211B8u
+#define func_800211B8 Menu_SetLoadAddress  /* alias */
+
+/* confirmed: a0 = menu table index (0x80048F60): reads that MENU/*.MNU to the menu load address and waits */
+#define PSX_FN_Menu_Load 0x800211C4u
+#define func_800211C4 Menu_Load  /* alias */
+
+/* guessed: a0 = LBA, a1 = byte size, a2 = destination, a3 = callback; asynchronous (callers poll Cd_ReadBusy) */
+#define PSX_FN_Cd_ReadSectors 0x80033E34u
+#define func_80033E34 Cd_ReadSectors  /* alias */
+
+/* guessed: Same arguments as Cd_ReadSectors; used for raw modules (DSCHANGE.X, ENDING.X) read straight to 0x800A0000 */
+#define PSX_FN_Cd_ReadSectorsWait 0x80033F40u
+#define func_80033F40 Cd_ReadSectorsWait  /* alias */
+
+/* guessed: Compared with the disc number the game expects before loading DSCHANGE.X */
+#define PSX_FN_Cd_CurrentDisc 0x800343F0u
+#define func_800343F0 Cd_CurrentDisc  /* alias */
+
+/* guessed: Nonzero while a CD read is still in progress; callers spin on it */
+#define PSX_FN_Cd_ReadBusy 0x80034B44u
+#define func_80034B44 Cd_ReadBusy  /* alias */
+
+/* confirmed: FIELD/DSCHANGE.X, read raw to 0x800A0000; also enters at 0x800A0C58 */
+#define PSX_FN_DiscChange_Main 0x800A0000u
+#define func_800A0000 DiscChange_Main  /* alias */
+
+/* confirmed: FIELD/ENDING.X, read raw to 0x800A0000; also enters at 0x800A04C4 */
+#define PSX_FN_Ending_Main 0x800A0030u
+#define func_800A0030 Ending_Main  /* alias */
+
+/* confirmed: MINI/SUBMAR.BIN */
+#define PSX_FN_Submarine_Main 0x800A00BCu
+#define func_800A00BC Submarine_Main  /* alias */
+
+/* confirmed: BROM.X: entry for module id 4 */
+#define PSX_FN_BattleStart_Main 0x800A00CCu
+#define func_800A00CC BattleStart_Main  /* alias */
+
+/* confirmed: MINI/HIGHWAY.BIN (motorcycle chase) */
+#define PSX_FN_Highway_Main 0x800A00D0u
+#define func_800A00D0 Highway_Main  /* alias */
+
+/* confirmed: MINI/CHOCOBO.BIN (Chocobo racing) */
+#define PSX_FN_Chocobo_Main 0x800A02D0u
+#define func_800A02D0 Chocobo_Main  /* alias */
+
+/* confirmed: MINI/SNOBO.BIN */
+#define PSX_FN_Snowboard_Main 0x800A0390u
+#define func_800A0390 Snowboard_Main  /* alias */
+
+/* confirmed: MINI/SNOBO2.BIN (Gold Saucer version) */
+#define PSX_FN_Snowboard2_Main 0x800A0448u
+#define func_800A0448 Snowboard2_Main  /* alias */
+
+/* confirmed: MINI/JET.BIN */
+#define PSX_FN_Jet_Main 0x800A0450u
+#define func_800A0450 Jet_Main  /* alias */
+
+/* confirmed: BATTLE.X: entry BattleModule_LoadAndRun jumps to; widescreen keys on its first instruction */
+#define PSX_FN_Battle_Main 0x800A1158u
+#define func_800A1158 Battle_Main  /* alias */
+
+/* confirmed: FIELD.BIN (resident at 0x800A0000): called by Field_LoadAndRun */
+#define PSX_FN_Field_Main 0x800A16CCu
+#define func_800A16CC Field_Main  /* alias */
+
+/* confirmed: WORLD.BIN: called by WorldMap_LoadAndRun */
+#define PSX_FN_WorldMap_Main 0x800A460Cu
+#define func_800A460C WorldMap_Main  /* alias */
+
+/* confirmed: MINI/CONDOR.BIN */
+#define PSX_FN_FortCondor_Main 0x800B6B58u
+#define func_800B6B58 FortCondor_Main  /* alias */
+
+/* guessed: FIELD.BIN: called right after it is unpacked, before Field_Main */
+#define PSX_FN_Field_Init 0x800CF60Cu
+#define func_800CF60C Field_Init  /* alias */
+
+/* confirmed: BATTLE.X: reads a battle effect (effect table 0x800EEBB8) raw to 0x801B0000 */
+#define PSX_FN_BattleEffect_Read 0x800D088Cu
+#define func_800D088C BattleEffect_Read  /* alias */
+
+/* confirmed: MENU/NAMEMENU.MNU (menu index 13) */
+#define PSX_FN_NameMenu_Main 0x801D131Cu
+#define func_801D131C NameMenu_Main  /* alias */
+
+/* confirmed: MENU/SAVEMENU.MNU (menu index 10); index 16 enters at 0x801D4CC0 */
+#define PSX_FN_SaveMenu_Main 0x801D1774u
+#define func_801D1774 SaveMenu_Main  /* alias */
+
+/* confirmed: MENU/ITEMMENU.MNU (menu index 1); five more entries at 0x801D2E84-0x801D3228 */
+#define PSX_FN_ItemMenu_Main 0x801D2D74u
+#define func_801D2D74 ItemMenu_Main  /* alias */
+
+/* confirmed: MENU/SHOPMENU.MNU (menu index 15) */
+#define PSX_FN_ShopMenu_Main 0x801D4118u
+#define func_801D4118 ShopMenu_Main  /* alias */
