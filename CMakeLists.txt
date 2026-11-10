@@ -38,3 +38,21 @@ ExternalProject_Add(ff7
     BUILD_ALWAYS ON
     USES_TERMINAL_CONFIGURE ON
     USES_TERMINAL_BUILD ON)
+
+# The hub menu (hub/hub.c, ported from TwistedMetal1234Recomp): a cover-shaped
+# window with Play (straight into the game) and Settings (the game's launcher).
+# It lists the games in games.txt beside it: Title|Subtitle|exe|cover name.
+# The cover is not shipped; the hub downloads it from libretro-thumbnails on
+# first run, by that name.
+file(WRITE "${CMAKE_BINARY_DIR}/games.txt"
+     "# Title|Subtitle|executable relative to this file|cover name\n"
+     "Final Fantasy VII|1997  -  Square|ff7/FinalFantasyVII_Recompiled.exe|Final Fantasy VII (USA) (Disc 1)\n")
+if(WIN32)
+    enable_language(RC)
+    add_executable(FF7Recomp WIN32 hub/hub.c hub/hub.rc)
+    target_compile_definitions(FF7Recomp PRIVATE UNICODE _UNICODE)
+    target_link_options(FF7Recomp PRIVATE -municode -static)
+    target_link_libraries(FF7Recomp PRIVATE gdiplus msimg32 urlmon)
+else()
+    message(STATUS "The hub menu is Windows-only; start the game from <build>/ff7.")
+endif()

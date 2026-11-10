@@ -27,6 +27,7 @@ STAGE="dist/$NAME"
 EXE="FinalFantasyVII_Recompiled.exe"
 src="$BUILD/ff7"
 [[ -f "$src/$EXE" ]] || { echo "error: $src/$EXE is missing; run cmake --build $BUILD first" >&2; exit 1; }
+[[ -f "$BUILD/FF7Recomp.exe" ]] || { echo "error: $BUILD/FF7Recomp.exe (the hub) is missing; run cmake --build $BUILD first" >&2; exit 1; }
 for need in assets/fonts assets/img bios/openbios.bin bios/OpenBIOS.LICENSE game.toml mods/bundled; do
   [[ -e "$src/$need" ]] || { echo "error: $src/$need is missing; rebuild" >&2; exit 1; }
 done
@@ -42,6 +43,13 @@ and Disc 3. Each can be a .chd, an .iso, or a .cue with its .bin, for example:
   Disc 3.chd
 EOF
 cp "$src/$EXE" "$src/game.toml" "$STAGE/"
+# The hub sits beside the game here (in a build it is one folder up), so its
+# list names the game without a folder. Its cover downloads on first run.
+cp "$BUILD/FF7Recomp.exe" "$STAGE/"
+cat > "$STAGE/games.txt" <<EOF
+# Title|Subtitle|executable relative to this file|cover name
+Final Fantasy VII|1997  -  Square|$EXE|Final Fantasy VII (USA) (Disc 1)
+EOF
 for opt in game_options.toml psx_game_version.txt; do
   [[ -f "$src/$opt" ]] && cp "$src/$opt" "$STAGE/"
 done
@@ -78,7 +86,7 @@ to run correctly.
 1. Put your three discs in the discs folder, named Disc 1, Disc 2 and Disc 3
    (for example discs\Disc 1.chd, discs\Disc 2.iso). The game changes discs
    from this folder when it asks for the next one.
-2. Run $EXE and click Play.
+2. Run FF7Recomp.exe and press Play (Settings opens the game's launcher).
 3. The launcher opens again at any time for display, audio, controls and
    memory cards. To change discs by hand during play, press Ctrl+L or F10
    (or hold Select + L3), choose Disc, pick the disc and Insert disc and
@@ -92,7 +100,7 @@ EOF
 # Nothing personal or copyrighted may ride along.
 bad="$(find "$STAGE" -type f \( -iname '*.chd' -o -iname '*.cue' -o -iname '*.iso' -o -iname '*.mcd' -o -iname '*.mcr' \
       -o -iname 'settings.toml' -o -iname 'state.toml' -o -iname 'keybinds.ini' -o -iname 'input.ini' \
-      -o -iname 'SCPH*' -o -iname '*.c' \) 2>/dev/null || true)"
+      -o -iname 'SCPH*' -o -iname '*.c' -o -path '*/covers/*' \) 2>/dev/null || true)"
 [[ -z "$bad" ]] || { echo "error: the package would include files it must not:" >&2; echo "$bad" >&2; exit 1; }
 bins="$(find "$STAGE" -type f -iname '*.bin' ! -path '*/bios/openbios.bin' 2>/dev/null || true)"
 [[ -z "$bins" ]] || { echo "error: unexpected .bin files in the package:" >&2; echo "$bins" >&2; exit 1; }
