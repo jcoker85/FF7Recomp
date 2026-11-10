@@ -56,6 +56,11 @@ overlay_cache = true
 [video]
 renderer = "opengl"
 aspect_ratio = "4:3"
+# Texture filtering (bilinear / xBR) smooths polygons only. Field screens are
+# built from 16x16 background tiles in layers, and the base layer hides a pure
+# green filler under the foreground layer; filtering the tiles would bleed that
+# green into the picture as outlines. Tiles, sprites and text stay sharp.
+filter_rectangles = false
 
 [controller]
 default_mode = "digital"

@@ -1,0 +1,119 @@
+diff --git a/recompiler/src/config_loader.cpp b/recompiler/src/config_loader.cpp
+index a8cb2764..9193e555 100644
+--- a/recompiler/src/config_loader.cpp
++++ b/recompiler/src/config_loader.cpp
+@@ -824,6 +824,9 @@ static RuntimeConfig parse_runtime_block(const toml::value& cfg, const fs::path&
+             else throw std::runtime_error(fmt::format(
+                 "[video] texture_filtering must be \"nearest\", \"bilinear\" or \"xbr\": {}", mode));
+         }
++        if (video.contains("filter_rectangles")) {
++            rt.video_filter_rectangles = toml::find<bool>(video, "filter_rectangles");
++        }
+         if (video.contains("fmv_filter")) {
+             const auto mode = toml::find<std::string>(video, "fmv_filter");
+             if (!video_fmv_filter_parse(mode, &rt.video_fmv_filter))
+diff --git a/recompiler/src/config_loader.h b/recompiler/src/config_loader.h
+index 3766dffd..b3998c52 100644
+--- a/recompiler/src/config_loader.h
++++ b/recompiler/src/config_loader.h
+@@ -499,6 +499,12 @@ struct RuntimeConfig {
+     // | "xbr" (3: edge-directed magnification, OpenGL only)
+     // (smooths textures and 2D backgrounds). Stored as 0/1.
+     int                   video_texture_filter = 0;
++    // filter_rectangles: a title setting. false keeps textured rectangles
++    // (2D sprites, tiles, text) point-sampled while texture_filtering smooths
++    // polygons. For games that compose a picture from layered tiles whose
++    // hidden texels must not bleed into the visible ones (FF7's field
++    // backgrounds hide a filler colour under their foreground layer).
++    bool                  video_filter_rectangles = true;
+ 
+     // fmv_filter: how the 24-bit FMV present reconstructs its low-res source
+     // (a 320x192-class movie blown up to the window). Only consulted when
+diff --git a/runtime/include/gpu_gl_renderer.h b/runtime/include/gpu_gl_renderer.h
+index 4a27bdb2..227bc14a 100644
+--- a/runtime/include/gpu_gl_renderer.h
++++ b/runtime/include/gpu_gl_renderer.h
+@@ -334,6 +334,8 @@ int  gl_renderer_accurate_blending(void);
+  * internal-resolution pixel, 0 off (true colour). Applies to eligible
+  * primitives (Gouraud, texture-modulated polygons) while GP0(E1h) bit 9 is set. */
+ void gl_renderer_set_dithering(int mode);
++/* [video] filter_rectangles: 0 keeps textured rectangles point-sampled. */
++void gl_renderer_set_filter_rectangles(int on);
+ int  gl_renderer_dithering(void);
+ int  gl_renderer_get_pgxp_depth(void);
+ void gl_renderer_set_pgxp_color_perspective(int on);
+diff --git a/runtime/src/gpu_gl_renderer.c b/runtime/src/gpu_gl_renderer.c
+index dab81837..77c09ddc 100644
+--- a/runtime/src/gpu_gl_renderer.c
++++ b/runtime/src/gpu_gl_renderer.c
+@@ -940,6 +940,9 @@ static void c5_to_float(uint16_t c, float *r, float *g, float *b) {
+  * gpu_textured_triangle. */
+ static int s_dither_mode = 1, s_dither_bit = 0;
+ static int s_prim_shaded = 0, s_prim_rect = 0;
++/* [video] filter_rectangles (title setting): 0 keeps textured rectangles
++ * point-sampled while texture filtering smooths polygons. */
++static int s_filter_rects = 1;
+ /* Added to a geometry vertex's a_col.a (as 2*131072) for an eligible prim. */
+ #define GPU_GEO_DITHER_CODE 262144.0f
+ static float geo_dither_code(void) {
+@@ -4790,7 +4793,11 @@ static void gpu_textured_triangle(const int *xs, const int *ys,
+     const int untracked=(lim && !s_projected_uv_valid) || (!s_pc_valid && !s_pq_valid);
+     /* [video] texture_lod rides in the filter batch key (bit 4) for proven
+      * world geometry only; sprites and HUD keep their exact texels. */
+-    const int filter = s_selected_bank_tex ? 0 :
++    /* [video] filter_rectangles = false: textured rectangles keep point
++     * sampling under every texture filter (layered 2D tiles whose hidden
++     * texels must not bleed into the visible ones). */
++    const int rect_point = s_prim_rect && !s_filter_rects;
++    const int filter = (s_selected_bank_tex || rect_point) ? 0 :
+         ((s_tex_filter==2 && untracked ? 0 : s_tex_filter) |
+          (s_tex_lod && !untracked ? 16 : 0));
+     int lim_buf[4];
+@@ -5237,6 +5244,11 @@ void gl_renderer_set_dithering(int mode) {
+     if (s_ctx) dither_apply_uniforms();
+ }
+ int gl_renderer_dithering(void) { return s_dither_mode; }
++void gl_renderer_set_filter_rectangles(int on) {
++    if ((on != 0) == s_filter_rects) return;
++    if (s_ctx) { flush_flat_batch(); flush_tex_batch(); }
++    s_filter_rects = on != 0;
++}
+ static void glb_set_texture_filter(int b) { s_tex_filter = b >= 0 && b <= 3 ? b : 0; sw_set_texture_filter(b != 0); }
+ static int  glb_texture_filter(void) { return s_tex_filter; }
+ 
+diff --git a/runtime/src/main.cpp b/runtime/src/main.cpp
+index 9b1bcf4a..efcb1e0b 100644
+--- a/runtime/src/main.cpp
++++ b/runtime/src/main.cpp
+@@ -1344,6 +1344,7 @@ static int           g_video_fmv_chroma = 0;   /* [video] fmv_chroma_smoothing /
+ static int           g_video_texture_lod = 0, g_video_aniso = 1;
+ static int           g_video_accurate_blending = 1;   /* [video] accurate_blending / PSX_ACCURATE_BLENDING */
+ static int           g_video_dithering = 1;   /* [video] dithering / PSX_DITHERING */
++static int           g_video_filter_rects = 1; /* [video] filter_rectangles (title) */
+ static int           g_video_pgxp_color_correction = 0;
+ static int           g_video_pgxp_seam = 0;
+ static float         g_video_pgxp_depth_threshold = 4096.0f;
+@@ -1720,6 +1721,7 @@ static void quality_apply_video_globals(const PSXRecompV4::RuntimeConfig& r) {
+     g_video_texture_lod  = r.video_texture_lod;
+     g_video_aniso        = r.video_anisotropic_filtering;
+     g_video_dithering    = r.video_dithering;
++    g_video_filter_rects = r.video_filter_rectangles ? 1 : 0;
+ }
+ static int           g_frame_interpolation_blend =
+     PSX_MOD_FRAME_INTERPOLATION_LINEAR;
+@@ -17884,6 +17886,7 @@ int main(int argc, char** argv) {
+             g_video_aniso = gc.runtime.video_anisotropic_filtering;
+             g_video_accurate_blending = gc.runtime.video_accurate_blending ? 1 : 0;
+             g_video_dithering = gc.runtime.video_dithering;
++            g_video_filter_rects = gc.runtime.video_filter_rectangles ? 1 : 0;
+             g_video_pgxp_color_correction = gc.runtime.video_pgxp_color_correction ? 1 : 0;
+             g_video_pgxp_seam = gc.runtime.video_pgxp_seam;
+             g_video_pgxp_depth_threshold = (float)gc.runtime.video_pgxp_depth_threshold;
+@@ -20444,6 +20447,7 @@ session_reboot:
+     gl_renderer_set_accurate_blending(g_video_accurate_blending);
+     if (const char* e = std::getenv("PSX_DITHERING")) g_video_dithering = std::atoi(e);
+     gl_renderer_set_dithering(g_video_dithering);
++    gl_renderer_set_filter_rectangles(g_video_filter_rects);
+     gl_renderer_set_pgxp_color_perspective(g_video_pgxp_color_correction);
+     gl_renderer_set_pgxp_seam(g_video_pgxp_seam);
+     if (const char* e = std::getenv("PSX_PGXP_DEPTH_THRESHOLD")) g_video_pgxp_depth_threshold = (float)std::atof(e);

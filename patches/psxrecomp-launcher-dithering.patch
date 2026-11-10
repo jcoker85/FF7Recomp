@@ -1,0 +1,118 @@
+diff --git a/recompiler/src/config_loader.cpp b/recompiler/src/config_loader.cpp
+index 9193e555..11c25e41 100644
+--- a/recompiler/src/config_loader.cpp
++++ b/recompiler/src/config_loader.cpp
+@@ -3073,6 +3073,12 @@ UserSettings load_user_settings(const fs::path& path) {
+             else if (m == "bilinear") { s.texture_filter = 1; s.has_texture_filter = true; }
+             else if (m == "xbr") { s.texture_filter = 3; s.has_texture_filter = true; }
+         });
++        if (v.contains("dithering")) try_get([&]{
++            const auto m = toml::find<std::string>(v, "dithering");
++            if (m == "off") { s.dithering = 0; s.has_dithering = true; }
++            else if (m == "on" || m == "scaled") { s.dithering = 1; s.has_dithering = true; }
++            else if (m == "fine") { s.dithering = 2; s.has_dithering = true; }
++        });
+         if (v.contains("fmv_filter")) try_get([&]{
+             const auto m = toml::find<std::string>(v, "fmv_filter");
+             if (video_fmv_filter_parse(m, &s.fmv_filter)) s.has_fmv_filter = true;
+@@ -3496,6 +3502,8 @@ bool save_user_settings(const fs::path& path, const UserSettings& s) {
+         f << "antialiasing      = " << (s.antialiasing ? "true" : "false") << "\n";
+     if (s.has_texture_filter)
+         f << "texture_filtering = \"" << (s.texture_filter == 3 ? "xbr" : s.texture_filter ? "bilinear" : "nearest") << "\"\n";
++    if (s.has_dithering)
++        f << "dithering         = \"" << (s.dithering == 0 ? "off" : s.dithering == 2 ? "fine" : "on") << "\"\n";
+     if (s.has_fmv_filter)
+         f << "fmv_filter        = \"" << video_fmv_filter_name(s.fmv_filter) << "\"\n";
+     if (s.has_geometry_correction)
+diff --git a/recompiler/src/config_loader.h b/recompiler/src/config_loader.h
+index b3998c52..4bb5bda9 100644
+--- a/recompiler/src/config_loader.h
++++ b/recompiler/src/config_loader.h
+@@ -1574,6 +1574,9 @@ struct UserSettings {
+     bool has_window_width   = false; int  window_width   = 1280; // -> 1280x960
+     bool has_antialiasing   = false; bool antialiasing   = true;
+     bool has_texture_filter = false; int  texture_filter = 0; // 0=nearest,1=bilinear
++    // [video] dithering as a player setting: 0 off, 1 on (hardware pattern on
++    // the native grid), 2 fine (pattern per internal-resolution pixel).
++    bool has_dithering = false; int dithering = 1;
+     // FMV present reconstruction (VIDEO_FMV_FILTER_*). Only consulted when
+     // antialiasing is on. See RuntimeConfig::video_fmv_filter.
+     bool has_fmv_filter     = false; int  fmv_filter     = VIDEO_FMV_FILTER_DEFAULT;
+diff --git a/runtime/src/main.cpp b/runtime/src/main.cpp
+index 34ec310d..812f1fb0 100644
+--- a/runtime/src/main.cpp
++++ b/runtime/src/main.cpp
+@@ -16542,6 +16542,7 @@ namespace {
+         (void)ws_ultrawide_offered_b;
+         launcher_profile_apply("psx", gi);
+         psx_launcher_texture_filter_catalog(gi);
++        gi->has_dithering = 1;
+         gi->name = game_name_c;
+         gi->region = region_c;
+         gi->keybinds_path =
+@@ -17019,6 +17020,7 @@ void mh_launcher_game_info(RecompLauncherCGameInfo* out) {
+     RecompLauncherCGameInfo& gi = *out;
+     launcher_profile_apply("psx", &gi);
+     psx_launcher_texture_filter_catalog(&gi);
++    gi.has_dithering = 1;
+     gi.name = g_ovl_name.c_str();
+     gi.keybinds_path = g_ovl_keybinds.c_str();
+     gi.config_path = g_ovl_config.c_str();
+@@ -18535,6 +18537,7 @@ int main(int argc, char** argv) {
+         if (us.has_render_thread)     g_render_thread     = us.render_thread ? 1 : 0;
+         if (us.has_present_thread)    g_present_thread    = us.present_thread ? 1 : 0;
+         if (us.has_frame_generation)  g_frame_generation  = us.frame_generation ? 1 : 0;
++        if (us.has_dithering)         g_video_dithering   = us.dithering;
+         if (us.has_vsync)             g_video_vsync       = us.vsync;
+         if (us.has_frame_interpolation)
+             g_frame_interpolation = us.frame_interpolation ? 1 : 0;
+@@ -19028,6 +19031,7 @@ int main(int argc, char** argv) {
+             seed.present_thread = g_present_thread != 0;
+             seed.frame_generation = g_frame_generation != 0;
+ #endif
++            seed.dithering = g_video_dithering;
+ #if defined(RECOMP_LAUNCHER_HAS_DYNAMIC_RESOLUTION)
+             seed.dynamic_resolution_min = dynres_min_value();
+             seed.has_dynamic_resolution_min = true;
+@@ -19244,6 +19248,7 @@ int main(int argc, char** argv) {
+             ls.present_thread   = seed.present_thread ? 1 : 0;
+             ls.frame_generation = seed.frame_generation ? 1 : 0;
+ #endif
++            ls.dithering = seed.dithering;
+ #if defined(RECOMP_LAUNCHER_HAS_QUALITY_PRESETS)
+             quality_seed_launcher(&ls);
+ #endif
+@@ -19617,6 +19622,7 @@ int main(int argc, char** argv) {
+                 seed.present_thread   = ls.present_thread != 0;   seed.has_present_thread   = true;
+                 seed.frame_generation = ls.frame_generation != 0; seed.has_frame_generation = true;
+ #endif
++                seed.dithering = ls.dithering; seed.has_dithering = true;
+                 seed.antialiasing          = ls.antialiasing != 0;     seed.has_antialiasing          = true;
+                 seed.geometry_correction   = ls.geometry_correction != 0;
+                 seed.has_geometry_correction = true;
+@@ -19905,6 +19911,7 @@ int main(int argc, char** argv) {
+                 g_present_thread   = seed.present_thread ? 1 : 0;
+                 g_frame_generation = seed.frame_generation ? 1 : 0;
+ #endif
++                g_video_dithering = seed.dithering;
+                 g_video_aa        = seed.antialiasing;
+                 g_video_texfilter = seed.texture_filter;
+                 g_video_fmv_filter = seed.fmv_filter;
+@@ -21862,6 +21869,7 @@ soft_return_lobby:
+         ls.render_thread    = g_render_thread_pref;
+         ls.present_thread   = g_present_thread_pref;
+         ls.frame_generation = g_frame_generation_pref;
++        ls.dithering = g_video_dithering;
+ #if defined(RECOMP_LAUNCHER_HAS_QUALITY_PRESETS)
+         quality_seed_launcher(&ls);
+ #endif
+@@ -22281,6 +22289,9 @@ soft_return_lobby:
+                 us.has_antialiasing = true;
+                 us.texture_filter = psx_texture_filter_from_ui(ls.texture_filter);
+                 us.has_texture_filter = true;
++                us.dithering = ls.dithering; us.has_dithering = true;
++                g_video_dithering = ls.dithering;
++                gl_renderer_set_dithering(g_video_dithering);
+                 us.fmv_filter = launcher_fmv_filter_to_cfg(ls.fmv_filter);
+                 us.has_fmv_filter = true;
+                 us.geometry_correction = ls.geometry_correction != 0;

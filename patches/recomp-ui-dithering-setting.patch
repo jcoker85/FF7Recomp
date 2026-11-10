@@ -1,0 +1,110 @@
+diff --git a/src/common/backends/imgui/launcher_imgui.cpp b/src/common/backends/imgui/launcher_imgui.cpp
+index 0232bdf..e497d27 100644
+--- a/src/common/backends/imgui/launcher_imgui.cpp
++++ b/src/common/backends/imgui/launcher_imgui.cpp
+@@ -4277,6 +4277,18 @@ void draw_display_controls(LauncherModel* m, const LauncherTheme& th) {
+         bool filter = m->s.linear_filter != 0;
+         if (ImGui::Checkbox("##filter", &filter)) launcher_model_toggle_filter(m);
+     }
++    if (m->has_dithering) {
++        row_label_right("Dithering", th, px(SETTINGS_CTRL_W));
++        ImGui::PushID("dithering");
++        if (ImGui::Button(ui_text(launcher_model_dithering_label(m)), ImVec2(px(SETTINGS_CTRL_W), px(30))))
++            launcher_model_cycle_dithering(m);
++        if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayNormal))
++            ImGui::SetTooltip("The PlayStation's dithering pattern on shaded and coloured polygons.\n"
++                              "On: the console's pattern, which grows with the internal resolution.\n"
++                              "Fine: the same pattern at full resolution, nearly invisible.\n"
++                              "Off: smooth colour, no pattern.");
++        ImGui::PopID();
++    }
+ 
+     if (m->has_frame_blend) {
+         row_label_right("Frame blending", th, cb);
+diff --git a/src/common/launcher_model.c b/src/common/launcher_model.c
+index 73fbb41..df0fb3a 100644
+--- a/src/common/launcher_model.c
++++ b/src/common/launcher_model.c
+@@ -558,6 +558,7 @@ void launcher_model_init(LauncherModel* m,
+         m->has_dynamic_resolution      = game->has_dynamic_resolution != 0;
+         m->has_render_pipeline         = game->has_render_pipeline != 0;
+         m->has_fps_mode                = game->has_fps_mode != 0;
++        m->has_dithering               = game->has_dithering != 0;
+         m->quality_offered_mask        = game->quality_offered_mask;
+         m->quality_detected            = game->quality_detected;
+         m->quality_summary             = game->quality_summary;
+@@ -1983,6 +1984,7 @@ static bool quality_fields_equal(const RecompLauncherCSettings* a,
+            a->frame_generation == b->frame_generation &&
+            a->antialiasing == b->antialiasing &&
+            a->texture_filter == b->texture_filter &&
++           a->dithering == b->dithering &&
+            a->fmv_filter == b->fmv_filter &&
+            a->geometry_correction == b->geometry_correction &&
+            a->perspective_texturing == b->perspective_texturing &&
+@@ -2117,6 +2119,20 @@ const char* launcher_model_texture_filter_label(const LauncherModel* m) {
+     return m->s.texture_filter ? "Bilinear" : "Nearest";
+ }
+ 
++/* Settings.dithering: 1 On -> 2 Fine -> 0 Off -> 1 On. */
++void launcher_model_cycle_dithering(LauncherModel* m) {
++    if (!m || !m->has_dithering) return;
++    m->s.dithering = m->s.dithering == 1 ? 2 : m->s.dithering == 2 ? 0 : 1;
++}
++
++const char* launcher_model_dithering_label(const LauncherModel* m) {
++    switch (m->s.dithering) {
++        case 0:  return "Off";
++        case 2:  return "Fine";
++        default: return "On";
++    }
++}
++
+ void launcher_model_cycle_fmv_filter(LauncherModel* m) {
+     if (!m || !m->has_fmv_filter) return;
+     int v = m->s.fmv_filter;
+diff --git a/src/common/launcher_model.h b/src/common/launcher_model.h
+index c04f2a4..312fd6c 100644
+--- a/src/common/launcher_model.h
++++ b/src/common/launcher_model.h
+@@ -340,6 +340,7 @@ typedef struct {
+     bool               has_dynamic_resolution;
+     bool               has_render_pipeline;   // GameInfo.has_render_pipeline
+     bool               has_fps_mode;          // GameInfo.has_fps_mode
++    bool               has_dithering;         // GameInfo.has_dithering
+     // ---- graphics presets (GameInfo.quality_*; Settings.quality_preset) ----
+     int                quality_offered_mask;
+     int                quality_detected;
+@@ -938,6 +939,8 @@ void        launcher_model_apply_internal_resolution_settings(LauncherModel* m);
+ void launcher_model_cycle_aa(LauncherModel* m);            // Off/2x/4x/8x (MSAA sample count)
+ const char* launcher_model_aa_label(const LauncherModel* m);
+ void launcher_model_toggle_texture_filter(LauncherModel* m);   // Nearest/Bilinear
++void launcher_model_cycle_dithering(LauncherModel* m);         // On/Fine/Off
++const char* launcher_model_dithering_label(const LauncherModel* m);
+ const char* launcher_model_texture_filter_label(const LauncherModel* m);
+ // FMV reconstruction: Nearest/Bilinear/Sharp/Bicubic (wraps).
+ void launcher_model_cycle_fmv_filter(LauncherModel* m);
+diff --git a/src/recomp_launcher.h b/src/recomp_launcher.h
+index 9a61e6f..4d39c1c 100644
+--- a/src/recomp_launcher.h
++++ b/src/recomp_launcher.h
+@@ -1566,6 +1566,11 @@ struct RecompLauncherCSettings {
+      * 2 = 60. Applied at next launch; a zero-initialized host reads as
+      * Normal. */
+     int  fps_mode;
++    /* GameInfo.has_dithering: the PS1 GPU's dithering of shaded and
++     * texture-modulated polygons. 0 = Off, 1 = On (the console's pattern on
++     * the native pixel grid, so it grows with the internal resolution),
++     * 2 = Fine (the pattern per internal-resolution pixel). */
++    int  dithering;
+     /* Graphics preset (GameInfo.quality_offered_mask): 0 = unset, 1 Low,
+      * 2 Medium, 3 High, 4 Ultra, 5 Custom (the player changed a setting a
+      * preset governs; quality_base is the preset it started from, 1..4).
+@@ -2311,6 +2316,8 @@ typedef struct RecompLauncherCGameInfo {
+     int                has_render_pipeline;
+     /* Nonzero: the host offers Settings.fps_mode (Display row). */
+     int                has_fps_mode;
++    /* Nonzero: the host offers Settings.dithering (Display row). */
++    int                has_dithering;
+     /* Entering the netplay flow / returning to the offline dashboard.
+      * Optional title policy (e.g. stage required co-op mods). The callback
+      * remains active through controller/settings subviews and a match launch.

@@ -21,11 +21,46 @@ above. Each disc can be a `.chd`, an `.iso`, or a `.cue` with its `.bin`.
    `Disc 1`, `Disc 2` and `Disc 3` (for example `discs/Disc 1.chd`,
    `discs/Disc 2.iso`). The game changes discs from this folder when it asks
    for the next one.
-3. Run `FinalFantasyVII_Recompiled.exe` and click Play.
-4. The launcher is where display, audio, controls and memory cards are set.
+3. Run `FF7Recomp.exe`. The cover art downloads in the background the first
+   time. **Play** starts the game; **Settings** opens its launcher.
+4. The launcher is where display, audio, controls, memory cards and the
+   options below are set.
    To change discs by hand during play, press **Ctrl+L** or **F10** (or hold
    **Select + L3**), choose **Disc**, pick the disc and **Insert disc and
    resume**.
+
+## Options
+
+All of these start off, so a fresh install plays like the PlayStation game.
+
+- **Faster disc loading** (Mods): emulates a 4x faster CD drive. On Disc 1 the
+  first battle draws 2.9 s after the game asks for it instead of 4.4 s; the
+  rest is the game's own transition. Movies, music and transitions keep their
+  original speed.
+- **Smooth Motion** (Settings -> Display) is listed because psxrecomp offers it
+  to every game, but it does little in FF7: the in-between frames it builds
+  need 3D it can follow from frame to frame, and it rejects nearly all of
+  FF7's. FF7 runs at its original frame rates (30 frames a second on field
+  screens, 15 in battle).
+- **Dithering** (Settings -> Display): the PlayStation's dithering pattern on
+  shaded polygons. **On** is the console's pattern on its own pixel grid, so at
+  a high internal resolution it shows as a visible checkerboard; **Fine** draws
+  it at full resolution, nearly invisible; **Off** gives smooth colour.
+- **Texture filtering** (Settings -> Display) smooths textures on polygons
+  only. Field backgrounds, sprites and text stay sharp: each field screen is
+  built from layers of 16x16 tiles, and the bottom layer hides a pure green
+  filler under the top one, which filtering would blend into green outlines
+  (`games/ff7/game.toml` `filter_rectangles = false`).
+- Graphics options from psxrecomp: internal resolution, anti-aliasing,
+  PGXP precision (less wobbly polygons) and HD texture packs.
+- No widescreen: field screens are pre-rendered 320-pixel backgrounds, and a
+  wider view of battles shows the edges of their arena models, so FF7 stays
+  4:3.
+
+**HD texture packs.** psxrecomp's HD Texture Packs mod works for FF7 as it is:
+enable it on the Mods page, turn on **Dump textures** to collect the game's
+textures while playing, edit them, and put them back as replacements. The
+replacements show with the OpenGL renderer (the default). No pack is included.
 
 ## Build
 
@@ -41,7 +76,8 @@ cmake -S . -B build -G Ninja -DCMAKE_C_COMPILER=clang
 cmake --build build
 ```
 
-The game is built to `build/ff7/FinalFantasyVII_Recompiled.exe`.
+The game is built to `build/ff7/FinalFantasyVII_Recompiled.exe`, and the hub to
+`build/FF7Recomp.exe`.
 `tools/package_release.sh` stages a release zip from that build into `dist/`.
 
 Run from the source tree, the game looks for its discs in `discs/` at the
@@ -90,6 +126,19 @@ Today the only result is `LASBOSS3.BIN`, which `aot/disc3.json` covers. Code rea
 compiler cannot follow can still fall back to the interpreter; only running the
 game shows that.
 
+## Code in this repository
+
+- `hub/`: the menu (`hub.c`, ported from TwistedMetal1234Recomp's), a
+  cover-shaped window with **Play** and **Settings**. It lists the games in
+  `games.txt` beside it (here one) and downloads the cover from
+  [libretro-thumbnails](https://github.com/libretro-thumbnails/libretro-thumbnails),
+  which is not redistributed here. Its icon is the game's.
+- `games/ff7/mods/preloaded/`: the **Faster disc loading** package, which turns
+  on psxrecomp's CD Speed feature at 4x.
+- `games/ff7/symbols.toml`: names for the functions this project has traced
+  (main loop, module loaders, overlay entry points) and the tables they use;
+  `tools/sync_symbols.py` writes `psx_symbols.h` from it.
+
 ## What is and is not in this repository
 
 The repository holds configuration and build files. It does **not** contain
@@ -105,7 +154,8 @@ assets or retail BIOS.
 ## Framework patches
 
 Both submodules stay pinned to upstream commits; `tools/setup_framework.sh`
-applies these to their working trees.
+applies these to their working trees (`psxrecomp-*` to psxrecomp, `recomp-ui-*`
+to recomp-ui).
 
 - `psxrecomp-disc-roster-any-format.patch` lets an entry in `game.toml`'s
   disc list name a disc rather than a file: when `discs/Disc 2.chd` is not
@@ -115,6 +165,18 @@ applies these to their working trees.
   pipeline's prepared files, so overlays the game stores gzip-compressed can be
   decoded from the disc and compiled ahead of time. Its optional `zero_tail`
   covers memory the loader clears right after a decoded module.
+- `recomp-ui-display-settings.patch` turns the launcher's window size control
+  into a dropdown and adds the render thread, present
+  thread and Smooth Motion checkboxes to the Display settings (from
+  TwistedMetal1234Recomp).
+- `psxrecomp-filter-rectangles.patch` adds `[video] filter_rectangles`: a
+  title setting that keeps textured rectangles (2D tiles, sprites, text)
+  point-sampled while texture filtering smooths polygons (OpenGL renderer).
+- `psxrecomp-launcher-dithering.patch` and `recomp-ui-dithering-setting.patch`
+  make `[video] dithering` a player setting: a Dithering row (On / Fine / Off)
+  in the launcher's Display settings, saved in `settings.toml` and applied at
+  launch and from the in-game menu. Stock psxrecomp reads it only from
+  `game.toml`.
 - `psxrecomp-libcxx-missing-includes.patch` adds three includes that newer libc++
   (llvm-mingw 20261020) no longer pulls in for the framework's bundled
   libraries: `<exception>` for toml11's `std::terminate` and `<cstdlib>` for
