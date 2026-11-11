@@ -9,8 +9,9 @@
 # runs on the interpreter.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-DISC="${1:?disc image}"
-DISC3="${2:-}"
+abspath() { [[ -z "$1" ]] && return; (cd "$(dirname "$1")" && printf '%s/%s' "$(pwd)" "$(basename "$1")"); }
+DISC="$(abspath "${1:?disc image}")"
+DISC3="$(abspath "${2:-}")"
 G="$ROOT/games/ff7"
 PY="$(command -v python3 || command -v python)"
 cd "$G"
