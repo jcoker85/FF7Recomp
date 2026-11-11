@@ -1,0 +1,27 @@
+format_version = 7
+id = "ff7.enhancement.steady-30"
+version = "1.0.0"
+name = "Steady 30 FPS"
+author = "FF7Recomp"
+description = "Holds field screens at a steady 30 frames per second instead of dropping and slowing down in busy scenes."
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+# Off by default. Field screens run their logic once per frame, so the game
+# slows down whenever a frame misses 30. This caps a field frame at two
+# vblanks (its frame-end VSync, game.toml [mod_immediate]) and runs the emulated
+# CPU 4x while the field module is loaded (game.toml [timing]), so frames stop
+# missing it. Battles and the world map are unchanged (15 fps by design).
+[[feature]]
+id = "steady-30"
+name = "Steady 30 FPS (field)"
+description = "Field screens hold 30 frames per second without slowing down. Battles and the world map are unchanged. Applies when the game starts."
+group = "Visual"
+default_enabled = false
+
+[[plugin]]
+feature = "steady-30"
+id = "ff7.steady30"

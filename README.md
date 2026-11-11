@@ -33,6 +33,14 @@ above. Each disc can be a `.chd`, an `.iso`, or a `.cue` with its `.bin`.
 
 All of these start off, so a fresh install plays like the PlayStation game.
 
+- **Steady 30 FPS (field)** (Mods): field screens hold exactly 30 frames a
+  second. The field runs its logic once per frame, so on the PlayStation busy
+  scenes dropped below 30 and slowed the game down with them. This gives the
+  emulated CPU 4x headroom while the field module is loaded and caps a field
+  frame at two vblanks (`games/ff7/game.toml` `[mod_immediate]` and `[timing]`,
+  `games/ff7/mods/src/ff7_steady30.c`), so it neither drops nor runs fast.
+  Battles (15 fps 3D) and the world map are unchanged: battle logic also runs
+  once per frame, so running battles at 30 would make them twice as fast.
 - **Faster disc loading** (Mods): emulates a 4x faster CD drive. On Disc 1 the
   first battle draws 2.9 s after the game asks for it instead of 4.4 s; the
   rest is the game's own transition. Movies, music and transitions keep their

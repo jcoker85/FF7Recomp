@@ -62,6 +62,10 @@ psxrecomp_add_game_runtime(psx-runtime
     CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
 )
 
+# Trusted static mod plugins backing the packages under mods/preloaded.
+target_sources(psx-runtime PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/mods/src/ff7_steady30.c")
+
 # Stage runtime configs next to the exe for direct build/ launches. This is its
 # own always-run target: as a POST_BUILD step it only ran when the executable
 # relinked, so a change to game.toml alone never reached the build folder.

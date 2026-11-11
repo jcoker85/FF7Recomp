@@ -71,3 +71,26 @@ default_mode = "digital"
 require_cue = true
 required_tracks = 1
 required_disc_fp = "23f1f7ab6a5327016a16783978fe49f94fb67814f4689f3c187612ece77418a3"
+
+# Steady 30 FPS (mods: ff7.enhancement.steady-30, mods/src/ff7_steady30.c).
+# The field main loop ends each frame with VSync(n) at 0x800A2A68, n = 2 in
+# most scenes and 3 in a few. On the PlayStation's CPU a field frame took about
+# two vblanks either way (30 fps), and more in busy scenes, when the game also
+# slowed down: its logic runs once per frame. Measured with the CPU at 4x:
+# VSync(2) gives 60 fps, VSync(3) 40 and VSync(4) a steady 30. Variant 1 turns
+# both choices into VSync(4), and the 4x CPU scale applies only while that mod
+# holds its gate open AND FIELD.BIN is the module at 0x800A0000 (its word at
+# 0x800A1FF8), so a frame never needs more than its two vblanks. Without the
+# mod both are off.
+[mod_immediate]
+sites = [
+  { address = "0x800A2A4C", expected = "0x34040002", group = 1, values = [4] },  # ori a0, zero, 2: VSync(2)
+  { address = "0x800A2A64", expected = "0x34040003", group = 1, values = [4] },  # ori a0, zero, 3: VSync(3)
+]
+
+[timing]
+guest_cycle_scale = 4
+guest_cycle_scale_gated = true
+guest_cycle_scale_gate = [
+  { addr = 0x800A1FF8, value = 0x34040001 },
+]
