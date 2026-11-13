@@ -1,5 +1,6 @@
 /*
- * FF7 "Steady 30 FPS" (ff7.enhancement.steady-30).
+ * FF7 FPS Mode "Target 30" (ff7.enhancement.steady-30, feature fps_mode,
+ * switched by the launcher's Settings -> Display -> FPS Mode).
  *
  * Field screens step their game logic once per frame and end each frame with
  * VSync(n) in FIELD.BIN (0x800A2A68), n = 2 in most scenes and 3 in a few. On

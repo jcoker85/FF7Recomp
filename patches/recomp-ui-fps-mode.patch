@@ -1,0 +1,32 @@
+diff --git a/src/common/backends/imgui/launcher_imgui.cpp b/src/common/backends/imgui/launcher_imgui.cpp
+index e497d27..e707349 100644
+--- a/src/common/backends/imgui/launcher_imgui.cpp
++++ b/src/common/backends/imgui/launcher_imgui.cpp
+@@ -4289,6 +4289,27 @@ void draw_display_controls(LauncherModel* m, const LauncherTheme& th) {
+                               "Off: smooth colour, no pattern.");
+         ImGui::PopID();
+     }
++    if (m->has_fps_mode) {
++        /* The host turns Target 30 into the game's frame rate mod at launch. */
++        static const char* kModes[2] = { "Original", "Target 30" };
++        int mode = m->s.fps_mode == 1 ? 1 : 0;
++        row_label_right("FPS Mode", th, px(SETTINGS_CTRL_W));
++        ImGui::PushID("fps_mode");
++        ImGui::SetNextItemWidth(px(SETTINGS_CTRL_W));
++        if (ImGui::BeginCombo("##fps_mode", kModes[mode])) {
++            for (int i = 0; i < 2; ++i)
++                if (ImGui::Selectable(kModes[i], mode == i))
++                    m->s.fps_mode = i;
++            ImGui::EndCombo();
++        }
++        if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayNormal))
++            ImGui::SetTooltip("Original: the PlayStation's frame rates. Busy field screens drop\n"
++                              "below 30 frames per second and the game slows down with them.\n"
++                              "Target 30: field screens hold 30 without slowing down.\n"
++                              "Battles, the world map and movies are the same in both.\n"
++                              "Applies at next launch.");
++        ImGui::PopID();
++    }
+ 
+     if (m->has_frame_blend) {
+         row_label_right("Frame blending", th, cb);

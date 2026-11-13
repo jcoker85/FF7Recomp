@@ -33,14 +33,22 @@ above. Each disc can be a `.chd`, an `.iso`, or a `.cue` with its `.bin`.
 
 All of these start off, so a fresh install plays like the PlayStation game.
 
-- **Steady 30 FPS (field)** (Mods): field screens hold exactly 30 frames a
-  second. The field runs its logic once per frame, so on the PlayStation busy
-  scenes dropped below 30 and slowed the game down with them. This gives the
-  emulated CPU 4x headroom while the field module is loaded and caps a field
-  frame at two vblanks (`games/ff7/game.toml` `[mod_immediate]` and `[timing]`,
-  `games/ff7/mods/src/ff7_steady30.c`), so it neither drops nor runs fast.
-  Battles (15 fps 3D) and the world map are unchanged: battle logic also runs
-  once per frame, so running battles at 30 would make them twice as fast.
+- **FPS Mode** (Settings -> Display): **Original** or **Target 30**.
+  - **Original** plays at the PlayStation's frame rates. Field screens (towns,
+    dungeons, anywhere you walk around) aim for 30 frames a second, but busy
+    ones drop below that, and because the field runs its game logic once per
+    frame, the game slows down with them.
+  - **Target 30** holds field screens at a steady 30 without slowing down. It
+    gives the emulated CPU 4x headroom while a field screen is loaded and caps
+    each field frame at two vblanks, so frames neither drop nor run fast
+    (`games/ff7/game.toml` `[mod_immediate]` and `[timing]`,
+    `games/ff7/mods/src/ff7_steady30.c`).
+  - The rest of the game is the same in both. The world map runs at 30.
+    Battles draw their 3D at 15 frames a second; their menus and gauges
+    redraw at 60, so a frame counter reads 60 there. Battle logic also runs
+    once per frame, so 30 fps battles would play at double speed. Movies are
+    15 frames a second, and so are scenes drawn over a movie background, such
+    as the camera sweeps around the Mako reactors.
 - **Faster disc loading** (Mods): emulates a 4x faster CD drive. On Disc 1 the
   first battle draws 2.9 s after the game asks for it instead of 4.4 s; the
   rest is the game's own transition. Movies, music and transitions keep their
@@ -48,8 +56,7 @@ All of these start off, so a fresh install plays like the PlayStation game.
 - **Smooth Motion** (Settings -> Display) is listed because psxrecomp offers it
   to every game, but it does little in FF7: the in-between frames it builds
   need 3D it can follow from frame to frame, and it rejects nearly all of
-  FF7's. FF7 runs at its original frame rates (30 frames a second on field
-  screens, 15 in battle).
+  FF7's. FPS Mode above is the way to a steadier frame rate.
 - **Dithering** (Settings -> Display): the PlayStation's dithering pattern on
   shaded polygons. **On** is the console's pattern on its own pixel grid, so at
   a high internal resolution it shows as a visible checkerboard; **Fine** draws
@@ -196,6 +203,12 @@ to recomp-ui).
 - `psxrecomp-window-icon-env.patch` lets whatever starts the game choose its
   window icon: `PSX_WINDOW_ICON` names a PNG used instead of
   `assets/psxrecomp.png`. The hub sets it to the icon it downloaded.
+- `psxrecomp-launcher-fps-mode.patch` and `recomp-ui-fps-mode.patch` add the
+  launcher's FPS Mode row (Settings -> Display) and `[video] fps_mode =
+  "original" | "30"` in `settings.toml`. At launch the runtime switches every
+  mod package's hidden `fps_mode` feature on for Target 30 and off for
+  Original; here that is the Target 30 package. Adapted from
+  TwistedMetal1234Recomp's FPS Mode.
 - `psxrecomp-libcxx-missing-includes.patch` adds three includes that newer libc++
   (llvm-mingw 20261020) no longer pulls in for the framework's bundled
   libraries: `<exception>` for toml11's `std::terminate` and `<cstdlib>` for

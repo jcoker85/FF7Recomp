@@ -72,7 +72,8 @@ require_cue = true
 required_tracks = 1
 required_disc_fp = "23f1f7ab6a5327016a16783978fe49f94fb67814f4689f3c187612ece77418a3"
 
-# Steady 30 FPS (mods: ff7.enhancement.steady-30, mods/src/ff7_steady30.c).
+# FPS Mode "Target 30" (launcher Settings -> Display -> FPS Mode; the hidden
+# fps_mode feature of ff7.enhancement.steady-30, mods/src/ff7_steady30.c).
 # The field main loop ends each frame with VSync(n) at 0x800A2A68, n = 2 in
 # most scenes and 3 in a few. On the PlayStation's CPU a field frame took about
 # two vblanks either way (30 fps), and more in busy scenes, when the game also
