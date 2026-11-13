@@ -1,0 +1,17 @@
+diff --git a/runtime/src/psx_window_icon.cpp b/runtime/src/psx_window_icon.cpp
+index 3e2e5acf..3bcc4f03 100644
+--- a/runtime/src/psx_window_icon.cpp
++++ b/runtime/src/psx_window_icon.cpp
+@@ -57,6 +57,12 @@ static fs::path exe_dir_from_argv0(const char *argv0)
+ 
+ static fs::path find_icon_png(const char *argv0)
+ {
++    /* A front end that starts the game can hand it its own icon (a PNG). */
++    if (const char *env = std::getenv("PSX_WINDOW_ICON")) {
++        std::error_code ec;
++        const fs::path p = fs::u8path(env);
++        if (env[0] && fs::is_regular_file(p, ec)) return p;
++    }
+     const fs::path exe_dir = exe_dir_from_argv0(argv0);
+     const fs::path candidates[] = {
+         exe_dir / "assets" / "psxrecomp.png",

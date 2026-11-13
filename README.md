@@ -21,8 +21,8 @@ above. Each disc can be a `.chd`, an `.iso`, or a `.cue` with its `.bin`.
    `Disc 1`, `Disc 2` and `Disc 3` (for example `discs/Disc 1.chd`,
    `discs/Disc 2.iso`). The game changes discs from this folder when it asks
    for the next one.
-3. Run `FF7Recomp.exe`. The cover art downloads in the background the first
-   time. **Play** starts the game; **Settings** opens its launcher.
+3. Run `FF7Recomp.exe`. The cover art and the program's icon download in the
+   background the first time. **Play** starts the game; **Settings** opens its launcher.
 4. The launcher is where display, audio, controls, memory cards and the
    options below are set.
    To change discs by hand during play, press **Ctrl+L** or **F10** (or hold
@@ -140,7 +140,15 @@ game shows that.
   cover-shaped window with **Play** and **Settings**. It lists the games in
   `games.txt` beside it (here one) and downloads the cover from
   [libretro-thumbnails](https://github.com/libretro-thumbnails/libretro-thumbnails),
-  which is not redistributed here. Its icon is the game's.
+  which is not redistributed here. It has no icon built in: on its first start
+  it downloads its icon (credited below) into `covers/icon.png` and makes
+  `covers/icon.ico`, and its window and the game window show it from there (a
+  square PNG put at `covers/icon.png` is used instead). It also writes the icon
+  into its own `FF7Recomp.exe` (it renames itself to `FF7Recomp.exe.old` and
+  puts a copy with the icon in its place), so Explorer and shortcuts show it
+  from the next start; the release zip's hub has none.
+- The hub and game window icon: [Final Fantasy VII icon by Gundamguy2255](https://www.steamgriddb.com/icon/10591)
+  on SteamGridDB, downloaded by the hub on its first start.
 - `games/ff7/mods/preloaded/`: the **Faster disc loading** package, which turns
   on psxrecomp's CD Speed feature at 4x.
 - `games/ff7/symbols.toml`: names for the functions this project has traced
@@ -185,6 +193,9 @@ to recomp-ui).
   in the launcher's Display settings, saved in `settings.toml` and applied at
   launch and from the in-game menu. Stock psxrecomp reads it only from
   `game.toml`.
+- `psxrecomp-window-icon-env.patch` lets whatever starts the game choose its
+  window icon: `PSX_WINDOW_ICON` names a PNG used instead of
+  `assets/psxrecomp.png`. The hub sets it to the icon it downloaded.
 - `psxrecomp-libcxx-missing-includes.patch` adds three includes that newer libc++
   (llvm-mingw 20261020) no longer pulls in for the framework's bundled
   libraries: `<exception>` for toml11's `std::terminate` and `<cstdlib>` for
@@ -197,4 +208,5 @@ PolyForm Noncommercial 1.0.0; see `LICENSE`. psxrecomp is under the same
 license and recomp-ui is MIT.
 
 Final Fantasy VII is a trademark of Square Enix, and the game is copyright its
-owners. This repository contains none of its code, data or artwork.
+owners. This repository contains none of its code, data or artwork, nor the
+icon and box art the hub downloads.

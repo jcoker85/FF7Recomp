@@ -48,8 +48,9 @@ file(WRITE "${CMAKE_BINARY_DIR}/games.txt"
      "# Title|Subtitle|executable relative to this file|cover name\n"
      "Final Fantasy VII|1997  -  Square|ff7/FinalFantasyVII_Recompiled.exe|Final Fantasy VII (USA) (Disc 1)\n")
 if(WIN32)
-    enable_language(RC)
-    add_executable(FF7Recomp WIN32 hub/hub.c hub/hub.rc)
+    # No icon is built in: the hub downloads it on its first start (hub.c,
+    # fetch_icon); it is not ours to redistribute.
+    add_executable(FF7Recomp WIN32 hub/hub.c)
     target_compile_definitions(FF7Recomp PRIVATE UNICODE _UNICODE)
     target_link_options(FF7Recomp PRIVATE -municode -static)
     target_link_libraries(FF7Recomp PRIVATE gdiplus msimg32 urlmon)
