@@ -259,29 +259,18 @@ void WINAPI SHChangeNotify(LONG event, UINT flags, const void* item1, const void
 typedef struct { BYTE w, h, colors, reserved; WORD planes, bits; DWORD bytes; WORD id; } GroupIconEntry;
 #pragma pack(pop)
 
+static BYTE* read_icon(long* size, WORD* count);
+
 static void embed_icon(void) {
-    wchar_t self[MAX_PATH], old[MAX_PATH], ico[MAX_PATH];
+    wchar_t self[MAX_PATH], old[MAX_PATH];
     if (!GetModuleFileNameW(NULL, self, MAX_PATH)) return;
     swprintf(old, MAX_PATH, L"%ls.old", self);
     DeleteFileW(old);  /* left by the start that wrote the icon */
     if (FindResourceW(NULL, MAKEINTRESOURCEW(1), (LPCWSTR)RT_GROUP_ICON)) return;  /* already in */
-    icon_path(ico, L"ico");
-    FILE* f = _wfopen(ico, L"rb");
-    if (!f) return;
-    fseek(f, 0, SEEK_END);
-    long size = ftell(f);
-    fseek(f, 0, SEEK_SET);
-    BYTE* data = size > 6 ? (BYTE*)malloc((size_t)size) : NULL;
-    int ok = data && fread(data, 1, (size_t)size, f) == (size_t)size;
-    fclose(f);
-    WORD count = ok ? *(WORD*)(data + 4) : 0;
-    ok = ok && *(WORD*)(data + 2) == 1 && count > 0 && count <= 16 && 6 + 16 * (long)count <= size;
-    for (WORD i = 0; ok && i < count; i++) {
-        const BYTE* e = data + 6 + 16 * i;
-        DWORD bytes = *(const DWORD*)(e + 8), at = *(const DWORD*)(e + 12);
-        ok = at <= (DWORD)size && bytes <= (DWORD)size - at;
-    }
-    if (ok && MoveFileExW(self, old, MOVEFILE_REPLACE_EXISTING)) {
+    long size = 0;
+    WORD count = 0;
+    BYTE* data = read_icon(&size, &count);
+    if (data && MoveFileExW(self, old, MOVEFILE_REPLACE_EXISTING)) {
         int copied = CopyFileW(old, self, FALSE);
         HANDLE h = copied ? BeginUpdateResourceW(self, FALSE) : NULL;
         int written = h != NULL;
@@ -314,8 +303,121 @@ static void embed_icon(void) {
     free(data);
 }
 
+/* The game programs get the icon in their files too, so their launcher (Settings) and the game show it in the taskbar and
+ * Explorer, not only on their windows. A game program has the default psxrecomp icon built in as group IDI_ICON1; that
+ * group and its images are replaced with covers\icon.ico. A game program is not running while the hub starts, so it is
+ * written in place. One that is already up to date is left alone, and one that is running or cannot be written keeps its
+ * icon until the next start. A rebuilt game gets its icon again on the next start. Play waits while a program is being
+ * written (g_game_icon_lock). */
+static CRITICAL_SECTION g_game_icon_lock;
+#define GAME_ICON_GROUP L"IDI_ICON1"
+
+typedef struct { WORD langs[8]; int count; } LangList;
+static BOOL CALLBACK add_lang(HMODULE m, LPCWSTR type, LPCWSTR name, WORD lang, LONG_PTR param) {
+    (void)m; (void)type; (void)name;
+    LangList* l = (LangList*)param;
+    if (l->count < 8) l->langs[l->count++] = lang;
+    return TRUE;
+}
+
+/* covers\icon.ico, checked: its bytes, size and image count. NULL when it is missing or malformed. */
+static BYTE* read_icon(long* size, WORD* count) {
+    wchar_t ico[MAX_PATH];
+    icon_path(ico, L"ico");
+    FILE* f = _wfopen(ico, L"rb");
+    if (!f) return NULL;
+    fseek(f, 0, SEEK_END);
+    *size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    BYTE* data = *size > 6 ? (BYTE*)malloc((size_t)*size) : NULL;
+    int ok = data && fread(data, 1, (size_t)*size, f) == (size_t)*size;
+    fclose(f);
+    *count = ok ? *(WORD*)(data + 4) : 0;
+    ok = ok && *(WORD*)(data + 2) == 1 && *count > 0 && *count <= 16 && 6 + 16 * (long)*count <= *size;
+    for (WORD i = 0; ok && i < *count; i++) {
+        const BYTE* e = data + 6 + 16 * i;
+        DWORD bytes = *(const DWORD*)(e + 8), at = *(const DWORD*)(e + 12);
+        ok = at <= (DWORD)*size && bytes <= (DWORD)*size - at;
+    }
+    if (!ok) { free(data); return NULL; }
+    return data;
+}
+
+static void embed_game_icon(const wchar_t* exe, const BYTE* data, WORD count) {
+    /* What the program has now: the languages of its icon group, the image ids it uses, and whether those are already
+     * this icon's images. */
+    HMODULE m = LoadLibraryExW(exe, NULL, LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE);
+    if (!m) return;
+    LangList langs = { { 0 }, 0 };
+    EnumResourceLanguagesW(m, (LPCWSTR)RT_GROUP_ICON, GAME_ICON_GROUP, add_lang, (LONG_PTR)&langs);
+    WORD old_ids[16];
+    int old_count = 0, same = langs.count == 1;
+    for (int l = 0; l < langs.count; l++) {
+        HRSRC r = FindResourceExW(m, (LPCWSTR)RT_GROUP_ICON, GAME_ICON_GROUP, langs.langs[l]);
+        const BYTE* g = r ? (const BYTE*)LockResource(LoadResource(m, r)) : NULL;
+        WORD n = g && SizeofResource(m, r) >= 6 ? *(const WORD*)(g + 4) : 0;
+        if (g && SizeofResource(m, r) < 6 + 14u * n) n = 0;
+        same = same && n == count;
+        for (WORD i = 0; i < n; i++) {
+            WORD id = *(const WORD*)(g + 6 + 14 * i + 12);
+            if (old_count < 16) old_ids[old_count++] = id;
+            if (!same) continue;
+            const BYTE* e = data + 6 + 16 * i;
+            DWORD bytes = *(const DWORD*)(e + 8), at = *(const DWORD*)(e + 12);
+            HRSRC ir = FindResourceExW(m, (LPCWSTR)RT_ICON, MAKEINTRESOURCEW(id), langs.langs[l]);
+            const void* img = ir ? LockResource(LoadResource(m, ir)) : NULL;
+            same = img && SizeofResource(m, ir) == bytes && memcmp(img, data + at, bytes) == 0;
+        }
+    }
+    FreeLibrary(m);
+    if (langs.count == 0 || same) return;  /* no built-in icon to replace, or already this one */
+
+    /* Replace: remove the old group and images in every language they have, then write this icon's in the first one. */
+    WORD lang = langs.langs[0];
+    HANDLE h = BeginUpdateResourceW(exe, FALSE);
+    int written = h != NULL;
+    for (int l = 0; written && l < langs.count; l++) {
+        UpdateResourceW(h, (LPCWSTR)RT_GROUP_ICON, GAME_ICON_GROUP, langs.langs[l], NULL, 0);
+        for (int i = 0; i < old_count; i++)
+            UpdateResourceW(h, (LPCWSTR)RT_ICON, MAKEINTRESOURCEW(old_ids[i]), langs.langs[l], NULL, 0);
+    }
+    GroupIconEntry group_entries[16];
+    BYTE group[6 + sizeof group_entries];
+    for (WORD i = 0; written && i < count; i++) {
+        const BYTE* e = data + 6 + 16 * i;
+        DWORD bytes = *(const DWORD*)(e + 8), at = *(const DWORD*)(e + 12);
+        GroupIconEntry* g = &group_entries[i];
+        g->w = e[0], g->h = e[1], g->colors = e[2], g->reserved = 0;
+        g->planes = *(const WORD*)(e + 4), g->bits = *(const WORD*)(e + 6), g->bytes = bytes, g->id = (WORD)(i + 1);
+        written = UpdateResourceW(h, (LPCWSTR)RT_ICON, MAKEINTRESOURCEW(i + 1), lang, (void*)(data + at), bytes);
+    }
+    if (written) {
+        WORD head[3] = { 0, 1, count };
+        memcpy(group, head, 6);
+        memcpy(group + 6, group_entries, sizeof(GroupIconEntry) * count);
+        written = UpdateResourceW(h, (LPCWSTR)RT_GROUP_ICON, GAME_ICON_GROUP, lang, group,
+                                  (DWORD)(6 + sizeof(GroupIconEntry) * count));
+    }
+    if (h && EndUpdateResourceW(h, !written) && written)
+        SHChangeNotify(0x00002000L /* SHCNE_UPDATEITEM */, 0x0005 /* SHCNF_PATHW */, exe, NULL);
+}
+
+static void embed_game_icons(void) {
+    long size = 0;
+    WORD count = 0;
+    BYTE* data = read_icon(&size, &count);
+    if (!data) return;
+    for (int i = 0; i < g_count; i++) {
+        if (!g_games[i].available) continue;
+        EnterCriticalSection(&g_game_icon_lock);
+        embed_game_icon(g_games[i].exe, data, count);
+        LeaveCriticalSection(&g_game_icon_lock);
+    }
+    free(data);
+}
+
 /* On the cover thread: the .ico, downloading the PNG first when there is none (tells the window when it is ready),
- * then into this program's file for the next start (embed_icon). */
+ * then into this program's file for the next start (embed_icon) and into the game programs (embed_game_icons). */
 static void fetch_icon(HWND hwnd) {
     wchar_t png[MAX_PATH], ico[MAX_PATH], part[MAX_PATH];
     icon_path(png, L"png");
@@ -332,6 +434,7 @@ static void fetch_icon(HWND hwnd) {
         PostMessageW(hwnd, WM_ICON_READY, 0, 0);
     }
     embed_icon();
+    embed_game_icons();
 }
 
 /* The launcher's window takes covers\icon.ico (title bar, taskbar, Alt+Tab), when there is one. */
@@ -434,7 +537,10 @@ static void launch(HWND hwnd) {
 
     STARTUPINFOW si = { sizeof si };
     PROCESS_INFORMATION pi;
-    if (!CreateProcessW(g->exe, cmd, NULL, NULL, FALSE, 0, NULL, cwd, &si, &pi)) {
+    EnterCriticalSection(&g_game_icon_lock);  /* not while the hub writes the icon into the program */
+    BOOL started = CreateProcessW(g->exe, cmd, NULL, NULL, FALSE, 0, NULL, cwd, &si, &pi);
+    LeaveCriticalSection(&g_game_icon_lock);
+    if (!started) {
         MessageBoxW(hwnd, L"Could not start the game.", g->title, MB_ICONERROR);
         return;
     }
@@ -779,6 +885,7 @@ int WINAPI wWinMain(HINSTANCE inst, HINSTANCE prev, PWSTR cmdline, int show) {
     if (!hwnd) return 1;
     set_window_icon(hwnd);  /* downloaded on the first start (fetch_icon) */
     ShowWindow(hwnd, show);
+    InitializeCriticalSection(&g_game_icon_lock);
     HANDLE covers = CreateThread(NULL, 0, fetch_covers, hwnd, 0, NULL);
     if (covers) CloseHandle(covers);
     SetTimer(hwnd, 1, TICK_MS, NULL);

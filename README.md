@@ -153,7 +153,10 @@ game shows that.
   square PNG put at `covers/icon.png` is used instead). It also writes the icon
   into its own `FF7Recomp.exe` (it renames itself to `FF7Recomp.exe.old` and
   puts a copy with the icon in its place), so Explorer and shortcuts show it
-  from the next start; the release zip's hub has none.
+  from the next start; the release zip's hub has none. It writes the icon
+  into the game's `FinalFantasyVII_Recompiled.exe` too, in place of psxrecomp's
+  default, so the game and its launcher show it in the taskbar and Explorer
+  (a game that is running keeps its old icon until the next start).
 - The hub and game window icon: [Final Fantasy VII icon by Gundamguy2255](https://www.steamgriddb.com/icon/10591)
   on SteamGridDB, downloaded by the hub on its first start.
 - `games/ff7/mods/preloaded/`: the **Faster disc loading** package, which turns
