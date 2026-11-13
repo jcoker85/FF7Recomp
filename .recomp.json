@@ -11,7 +11,7 @@
   "status": "released",
   "targets": ["Windows"],
   "toolchain": "Psxrecomp",
-  "approach": "Static recompilation",
+  "approach": "Static recompilation with a steady 30 FPS mode, faster disc loading and higher resolutions",
   "maintainers": [
     {
       "name": "jcoker85",
